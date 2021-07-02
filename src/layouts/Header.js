@@ -1,10 +1,12 @@
 import React from 'react';
+import HeaderAppBar from "../component header/AppBar";
+
 
 const Header = () => {
     return (
-        <div>
-            header
-        </div>
+            <div>
+                <HeaderAppBar />
+            </div>
     );
 };
 
