@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Grid} from "@material-ui/core";
+import {Box, Container, Grid} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -13,10 +13,7 @@ const useStyles = makeStyles(() => ({
         marginTop: '150px',
         backgroundColor: '#1266F1',
     },
-    col: {
-        padding: '20px 100px',
-        color: 'white'
-    },
+
 
 }));
 
@@ -26,18 +23,20 @@ const FirstBannerFooter = () => {
 
     return (
         <Grid container className={classes.banner}  >
-                <Grid item xs={12} sm={6} className={classes.col} >
-                    <Box fontSize='18px'>Get connected with us on social networks!</Box>
+            <Container >
+                <Grid container >
+                <Grid item sm={6}  component={Box} fontSize='18px' pt='20px' pb='20px' color='white'>
+                    Get connected with us on social networks!
                 </Grid>
-                <Grid item xs={12} sm={6} className={classes.col} >
-                    <Box display='flex' justifyContent='flex-end' >
+                <Grid item sm={6} component={Box} display='flex' justifyContent='flex-end' pt='20px'  pb='20px' color='white'>
                         <Box marginRight='20px'><FacebookIcon /></Box>
                         <Box marginRight='20px'><TwitterIcon /></Box>
                         <Box marginRight='20px'><EmailIcon /></Box>
                         <Box marginRight='20px'><LinkedInIcon /></Box>
                         <Box marginRight='20px'><InstagramIcon /></Box>
-                    </Box>
                 </Grid>
+                </Grid>
+            </Container>
         </Grid>
 
 

@@ -1,10 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-import VolumeDown from '@material-ui/icons/VolumeDown';
-import VolumeUp from '@material-ui/icons/VolumeUp';
+import {Box} from "@material-ui/core";
 
 const useStyles = makeStyles({
     root: {
@@ -21,18 +18,10 @@ export default function ContinuousSlider() {
     };
 
     return (
-        <div className={classes.root}>
-            <Grid container spacing={2}>
-                <Grid item>
-                    $0
-                </Grid>
-                <Grid item xs>
-                    <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
-                </Grid>
-                <Grid item>
-                    $100
-                </Grid>
-            </Grid>
-        </div>
+        <Box className={classes.root}  display='flex' >
+                <Box marginTop='15px' fontSize='15px'> $0 </Box>
+                <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
+                <Box marginTop='15px' fontSize='15px'> $100 </Box>
+        </Box>
     );
 }

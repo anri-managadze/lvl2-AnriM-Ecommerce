@@ -2,38 +2,27 @@ import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
+import {makeStyles} from "@material-ui/core";
 
+const useStyle= makeStyles(()=>({
+    label: 'correct',
+    correct:
+{
+    color: '#4F4F4F',
+        fontSize: '13px'
+}
 
-export default function CheckBox() {
+}))
+
+export default function CheckBox({label,value}) {
+    const classes=useStyle();
     return (
-        <FormControl component="fieldset">
-            <FormGroup >
+            <FormGroup className={classes.text}>
                 <FormControlLabel
-                    value="new"
+                    value={value}
                     control={<Checkbox color="primary" />}
-                    label="NEW"
-                    labelPlacement="new"
-                />
-                <FormControlLabel
-                    value="used"
-                    control={<Checkbox color="primary" />}
-                    label="USED"
-                    labelPlacement="used"
-                />
-                <FormControlLabel
-                    value="collectible"
-                    control={<Checkbox color="primary" />}
-                    label="COLLECTIBLE"
-                    labelPlacement="collectible"
-                />
-                <FormControlLabel
-                    value="renewed"
-                    control={<Checkbox color="primary" />}
-                    label="RENEWED"
-                    labelPlacement="renewed"
+                    label={label}
                 />
             </FormGroup>
-        </FormControl>
     );
 }
