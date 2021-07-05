@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Container} from "@material-ui/core";
+import {Container, Grid} from "@material-ui/core";
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import Paginationn from "./Pagination";
@@ -9,25 +9,25 @@ import Paginationn from "./Pagination";
 const MainBar = () => {
     return (
         <Container>
-            <Box display='flex' justifyContent='space-between'>
-                <Box >
+            <Grid container  >
+                <Grid item xs={12} sm={6} >
                     <ViewListIcon   />
                     <ViewModuleIcon />
-                </Box>
-                <Box>
+                </Grid>
+                <Grid item xs={12} sm={6} justify='flex-end'>
                    <Paginationn />
-                </Box>
-            </Box>
+                </Grid>
+            </Grid>
 
-            <Box display='flex'  justifyContent='space-between'>
-                <Box>
+            <Grid container   >
+                <Grid item xs={12} sm={6}>
                     <ViewListIcon />
                     <ViewModuleIcon />
-                </Box>
-                <Box>
+                </Grid>
+                <Grid item xs={12} sm={6}>
                     <Paginationn />
-                </Box>
-            </Box>
+                </Grid>
+            </Grid>
 
         </Container>
     );

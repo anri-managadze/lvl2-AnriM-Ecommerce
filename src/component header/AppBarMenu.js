@@ -19,13 +19,15 @@ const useStyles = makeStyles(() => ({
         color: '#808080',
         fontSize: '16px',
         textTransform: 'inherit',
+        width: '90px',
+        height:'35px',
     }
 }));
 
-const AppBarMenu = () => {
+const AppBarMenu = ({display,textAlign}) => {
     const classes = useStyles();
     return (
-                <Box display='flex' >
+                <Box display={display} textAlign={textAlign} >
                     <Box><CustomizedBadges /></Box>
                     <Box><SplitButton /></Box>
                     <Box><Button color="inherit" className={classes.btnall}>Shop</Button></Box>

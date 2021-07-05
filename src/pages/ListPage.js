@@ -12,7 +12,7 @@ const ListPage = () => {
 
     return (
         <MainLayout>
-            <Box style={{ backgroundImage: `url(${cover})`, height: '400px',backgroundPosition: 'center', backgroundSize: 'cover' }}> </Box>
+            <Box style={{ backgroundImage: `url(${cover})`, height: '400px',backgroundPosition: 'center', backgroundSize: 'cover', backgroundColor:'rgba(0,0,0,0.6)'}}> </Box>
                     <Container>
                         <Grid container component={Box}  mt='50px'>
                             <Grid item xs={12} sm={3}> <SideBar /> </Grid>

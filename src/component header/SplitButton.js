@@ -17,7 +17,8 @@ const butStyles = makeStyles(() => ({
     background: {
         backgroundColor:"white",
         color: 'black',
-        border: 'none'
+        border: 'none',
+        width: '70px'
     },
     style:
         {
