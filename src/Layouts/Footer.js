@@ -1,8 +1,8 @@
 import React from 'react';
-import FirstBannerFooter from "../component footer/FirstBannerFooter";
+import FirstBannerFooter from "../ComponentFooter/FirstBannerFooter";
 import {Box} from "@material-ui/core";
-import SecondBannerFooter from "../component footer/SecondBannerFooter";
-import ThirdBannerFooter from "../component footer/ThirdBannerFooter";
+import SecondBannerFooter from "../ComponentFooter/SecondBannerFooter";
+import ThirdBannerFooter from "../ComponentFooter/ThirdBannerFooter";
 
 
 

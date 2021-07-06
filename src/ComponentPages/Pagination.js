@@ -10,15 +10,16 @@ const useStyles = makeStyles((theme) => ({
     },
     right: {
         display: 'flex',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     }
+
 }));
 
 export default function Paginationn() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Pagination count={3} color="primary" className={classes.right}/>
+            <Pagination count={3}  className={classes.right} color='primary'/>
         </div>
     );
 }

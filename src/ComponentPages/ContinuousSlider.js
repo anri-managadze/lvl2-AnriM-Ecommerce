@@ -4,9 +4,22 @@ import Slider from '@material-ui/core/Slider';
 import {Box} from "@material-ui/core";
 
 const useStyles = makeStyles({
-    root: {
+    main: {
         width: 200,
     },
+    root : {
+        color: '#1266F1'
+    },
+    track: {
+        height: '6px'
+    },
+    thumb : {
+        marginTop: '-3px'
+    },
+    rail: {
+        height: "6px"
+    }
+
 });
 
 export default function ContinuousSlider() {
@@ -18,9 +31,14 @@ export default function ContinuousSlider() {
     };
 
     return (
-        <Box className={classes.root}  display='flex' >
+        <Box className={classes.main}  display='flex' >
                 <Box marginTop='15px' fontSize='15px'> $0 </Box>
-                <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
+                <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" classes={ {
+                    root: classes.root,
+                    track: classes.track,
+                    thumb: classes.thumb,
+                    rail: classes.rail
+                } }/>
                 <Box marginTop='15px' fontSize='15px'> $100 </Box>
         </Box>
     );

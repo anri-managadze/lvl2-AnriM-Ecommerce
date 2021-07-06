@@ -8,15 +8,18 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     banner: {
         marginTop: '150px',
         backgroundColor: '#1266F1',
     },
-
-
+    media: {
+    [theme.breakpoints.only('xs')] : {
+        display: 'flex',
+        justifyContent: 'center'
+    }
+    }
 }));
-
 
 const FirstBannerFooter = () => {
     const classes=useStyles();
@@ -24,8 +27,8 @@ const FirstBannerFooter = () => {
     return (
         <Grid container className={classes.banner}  >
             <Container >
-                <Grid container >
-                <Grid item sm={6}  component={Box} fontSize='18px' pt='20px' pb='20px' color='white'>
+                <Grid container className={classes.media}>
+                <Grid item sm={6}  component={Box} fontSize='18px' pt='20px' pb='20px' color='white' >
                     Get connected with us on social networks!
                 </Grid>
                 <Grid item sm={6} component={Box} display='flex' justifyContent='flex-end' pt='20px'  pb='20px' color='white'>

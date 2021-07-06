@@ -1,9 +1,9 @@
 import React from 'react';
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../Layouts/MainLayout";
 import cover from '../cover.jpg'
 import {Box, Container, Grid} from "@material-ui/core";
-import SideBar from "../component pages/SideBar";
-import MainBar from "../component pages/MainBar";
+import SideBar from "../ComponentPages/SideBar";
+import MainBar from "../ComponentPages/MainBar";
 
 
 
@@ -12,7 +12,7 @@ const ListPage = () => {
 
     return (
         <MainLayout>
-            <Box style={{ backgroundImage: `url(${cover})`, height: '400px',backgroundPosition: 'center', backgroundSize: 'cover', backgroundColor:'rgba(0,0,0,0.6)'}}> </Box>
+            <Box style={{ backgroundImage: `url(${cover})`, height: '400px',backgroundPosition: 'center', backgroundSize: 'cover'}}> </Box>
                     <Container>
                         <Grid container component={Box}  mt='50px'>
                             <Grid item xs={12} sm={3}> <SideBar /> </Grid>

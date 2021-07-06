@@ -2,26 +2,26 @@ import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {makeStyles} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
 
-const useStyle= makeStyles(()=>({
-    label: 'correct',
-    correct:
-{
-    color: '#4F4F4F',
-        fontSize: '13px'
-}
-
-}))
+const useStyles = makeStyles({
+   label: {
+        fontSize: '13px',
+        color: '#847592'
+    }
+});
 
 export default function CheckBox({label,value}) {
-    const classes=useStyle();
+    const classes=useStyles();
     return (
-            <FormGroup className={classes.text}>
+            <FormGroup >
                 <FormControlLabel
                     value={value}
-                    control={<Checkbox color="primary" />}
+                    control={<Checkbox color='primary'/>}
                     label={label}
+                    classes={ {
+                        label: classes.label
+                    }}
                 />
             </FormGroup>
     );

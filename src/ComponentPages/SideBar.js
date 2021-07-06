@@ -2,12 +2,12 @@ import React from 'react';
 import {Box, Button,  ListItem, makeStyles, OutlinedInput} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import Checkbox from './CheckBox';
-import StarIcon from '@material-ui/icons/Star';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+
 import RadioBut from "./RadioBut";
 import ContinuousSlider from "./ContinuousSlider";
 import ListMenu from "./ListMenu";
 import Circle from "./Circle";
+import Ratings from "./Ratings";
 
 
 function ListItemLink(props) {
@@ -56,20 +56,17 @@ const SideBar = () => {
             </Box>
             <Box>
                 <Box fontSize='16px' marginTop='60px' fontWeight='bold' color='#4F4F4F'>Avg. Customer Review</Box>
-                <Box marginTop='15px' display='flex'><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarBorderIcon /><span>&UP</span></Box>
-                <Box display='flex'><StarIcon /><StarIcon /><StarIcon /><StarBorderIcon /><StarBorderIcon /><span>&UP</span></Box>
-                <Box display='flex'><StarIcon /><StarIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /><span>&UP</span></Box>
-                <Box display='flex'><StarIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /><span>&UP</span></Box>
+                <Ratings />
             </Box>
             <Box>
                 <Box fontSize='16px' marginTop='60px' fontWeight='bold' color='#4F4F4F'>Price</Box>
                 <Box marginTop='15px'><RadioBut /> </Box>
             </Box>
             <Box display='flex' marginTop='15px' width='70%'>
-                <OutlinedInput id="outlined-basic" placeholder='$ Min' variant="outlined" className={classes.root} />
-                <OutlinedInput id="outlined-basic" placeholder='$ Max' variant="outlined" className={classes.root} />
+                <OutlinedInput id="min" placeholder='$ Min' variant="outlined" className={classes.root} />
+                <OutlinedInput id="max" placeholder='$ Max' variant="outlined" className={classes.root} />
             </Box>
-            <Box fontSize='20px'  marginTop='60px'>Price
+            <Box fontSize='16px'  marginTop='60px' fontWeight='bold' color='#4F4F4F'>Price
                 <Box> <ContinuousSlider /> </Box>
             </Box>
             <Box>
