@@ -8,6 +8,9 @@ const useStyles = makeStyles({
    label: {
         fontSize: '13px',
         color: '#847592'
+    },
+    checked: {
+       color: '#1266F1!important'
     }
 });
 
@@ -17,7 +20,7 @@ export default function CheckBox({label,value}) {
             <FormGroup >
                 <FormControlLabel
                     value={value}
-                    control={<Checkbox color='primary'/>}
+                    control={<Checkbox classes={ {checked: classes.checked }} color='primary'/>}
                     label={label}
                     classes={ {
                         label: classes.label

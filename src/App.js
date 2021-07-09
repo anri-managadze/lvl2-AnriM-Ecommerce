@@ -1,10 +1,13 @@
 import './App.css';
-import ListPage from "./Pages/ListPage";
+
+import SinglePage from "./Pages/SinglePage";
+//import ListPage from "./Pages/ListPage";
 
 function App() {
   return (
     <div >
-        <ListPage />
+        {/*<ListPage/>*/}
+        <SinglePage />
     </div>
   );
 }

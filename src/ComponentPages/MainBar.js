@@ -3,8 +3,8 @@ import {Box, Container, Grid} from "@material-ui/core";
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import Paginationn from "./Pagination";
-import Fetch from "./Fetch";
 import {makeStyles} from "@material-ui/core/styles";
+import ListState from "./ListState";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +32,7 @@ const MainBar = () => {
                 </Grid>
             </Grid>
 
-            <Fetch className={classes.media}/>
+            <ListState className={classes.media}/>
 
             <Grid container   >
                 <Grid item xs={12} sm={6} className={classes.media}>
