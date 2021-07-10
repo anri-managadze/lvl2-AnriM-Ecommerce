@@ -60,7 +60,9 @@ const SideBar = () => {
             </Box>
             <Box>
                 <Box fontSize='16px' marginTop='60px' fontWeight='bold' color='#4F4F4F'>Price</Box>
-                <Box marginTop='15px'><RadioBut /> </Box>
+                <Box marginTop='15px'>
+                    <RadioBut />
+                </Box>
             </Box>
             <Box display='flex' marginTop='15px' width='70%'>
                 <OutlinedInput id="min" placeholder='$ Min' variant="outlined" className={classes.root} />

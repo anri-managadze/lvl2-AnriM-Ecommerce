@@ -7,7 +7,7 @@ function App() {
   return (
     <div >
         {/*<ListPage/>*/}
-        <SinglePage />
+        <SinglePage/>
     </div>
   );
 }
