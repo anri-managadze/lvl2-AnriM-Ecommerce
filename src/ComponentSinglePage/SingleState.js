@@ -9,7 +9,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const useStyles = makeStyles({
     img: {
-        maxWidth: '85%',
+        maxWidth: '100%',
         borderRadius: '5px',
     },
     root: {
@@ -35,12 +35,18 @@ const SingleState = () => {
     return (
 
         <Container>
-            <Grid container component={Box} padding='30px 0 30px 0'>
-                <Grid item xs={12} sm={6}  >
+            <Grid container >
+                <Grid item xs={12} sm={6} padding='50px ' component={Box}>
                     <Box ><img src={data.image} alt='surati' className={classes.img}/></Box>
+                    <Box display='flex' justifyContent='space-between' mt='15px'>
+                        <img src='https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg' alt='surati' width='22%'/>
+                        <img src='https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg' alt='surati' width='22%'/>
+                        <img src='https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg' alt='surati' width='22%'/>
+                        <img src='https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg' alt='surati' width='22%'/>
+                    </Box>
                 </Grid>
-                <Grid item xs={12} sm={6}  >
-                    <Box >
+                <Grid item xs={12} sm={6} padding='50px ' component={Box}>
+                    <Box>
                         <Box  fontSize='20px' color='#4F4F4F' fontWeight='bold'> {data.title}</Box>
                         <Box  marginTop='20px' fontSize='13px'> {data.category}</Box>
                         <Box marginTop='20px'><Rating name="half-rating-read" defaultValue={4} precision={0.5} readOnly className={classes.root}/></Box>
@@ -75,7 +81,7 @@ const SingleState = () => {
                     </Box>
                 </Grid>
             </Grid>
-            <Box>
+            <Box padding='0 50px '>
                 <FullWidthTab />
                 <Box border='0.5px solid #E5E5E5' marginTop='30px'> </Box>
             </Box>
