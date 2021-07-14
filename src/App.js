@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import ListPage from "./Pages/ListPage";
 
-import {LIST, SINGLE} from "./Roures";
+import {HOME, LIST, SINGLE} from "./Roures";
 
 function App() {
   return (
@@ -21,6 +21,9 @@ function App() {
                 </Route>
                 <Route path={SINGLE}>
                     <SinglePage/>
+                </Route>
+                <Route path={HOME}>
+                    <ListPage/>
                 </Route>
             </Switch>
 
