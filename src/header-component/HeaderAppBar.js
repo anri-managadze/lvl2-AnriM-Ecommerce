@@ -3,30 +3,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import {Box, Container, Hidden} from "@material-ui/core";
 import AppBarMenu from "./AppBarMenu";
-import ListMenu from "../ComponentPages/ListMenu";
+import ListMenu from "../page-component/ListMenu";
 import MenuIcon from '@material-ui/icons/Menu';
 import {Link} from "react-router-dom";
 import {LIST} from "../Roures";
-
-const useStyles = makeStyles(() => ({
-    header: {
-        minWidth: '100%',
-        padding: '0',
-        position: "fixed",
-        top: '0',
-        zIndex: '1',
-
-        boxShadow: '0px 2px 10px -1px #F4F4F4 !important'
-    },
-    icon: {
-        display: 'flex',
-        justifyContent: 'flex-end'
-    },
-    list: {
-        textDecoration: 'none',
-        color: 'black'
-    }
-}));
+import {useStyles} from "./HeaderAppBarStyle";
 
 export default function HeaderAppBar() {
     const classes = useStyles();

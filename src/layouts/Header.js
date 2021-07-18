@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderAppBar from "../ComponentHeader/AppBar";
+import HeaderAppBar from "../header-component/HeaderAppBar";
 
 
 const Header = () => {

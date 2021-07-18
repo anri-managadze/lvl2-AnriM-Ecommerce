@@ -1,25 +1,13 @@
 import React from 'react';
 import {Box, Container, Grid} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import EmailIcon from '@material-ui/icons/Email';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
+import {useStyles} from "./FirstBannerFooterStyle";
 
 
-const useStyles = makeStyles((theme) => ({
-    banner: {
-        marginTop: '150px',
-        backgroundColor: '#1266F1',
-    },
-    media: {
-    [theme.breakpoints.only('xs')] : {
-        display: 'flex',
-        justifyContent: 'center'
-    }
-    }
-}));
 
 const FirstBannerFooter = () => {
     const classes=useStyles();

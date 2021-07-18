@@ -1,20 +1,20 @@
 import './App.css';
-import SinglePage from "./Pages/SinglePage";
+import SinglePage from "./pages/SinglePage";
 
 import {
     BrowserRouter as Router,
     Switch,
     Route,
 } from "react-router-dom";
-import ListPage from "./Pages/ListPage";
 
-import {HOME, LIST, SINGLE} from "./Roures";
+import ListPage from "./pages/ListPage";
+import {ADMIN, HOME, LIST, SINGLE} from "./Roures";
+import Productpage from "./pages/productpage";
 
-function App() {
+function App(){
   return (
     <div >
         <Router>
-
             <Switch>
                 <Route path={LIST}>
                     <ListPage/>
@@ -22,11 +22,13 @@ function App() {
                 <Route path={SINGLE}>
                     <SinglePage/>
                 </Route>
+                <Route path={ADMIN}>
+                    <Productpage />
+                </Route>
                 <Route path={HOME}>
                     <ListPage/>
                 </Route>
             </Switch>
-
         </Router>
     </div>
   );

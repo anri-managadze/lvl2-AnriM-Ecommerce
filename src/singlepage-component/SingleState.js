@@ -7,7 +7,7 @@ import Quantity from "./ Quantity";
 import RadioButSingle from "./RadioButSingle";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {useParams} from 'react-router-dom';
-import Loader from "../ComponentPages/Loader";
+import Loader from "../page-component/Loader";
 
 const useStyles = makeStyles({
     img: {

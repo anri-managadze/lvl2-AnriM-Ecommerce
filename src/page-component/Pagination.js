@@ -12,14 +12,13 @@ const useStyles = makeStyles(() => ({
         display: 'flex',
         justifyContent: 'flex-end',
     }
-
 }));
 
-export default function Paginationn() {
+export default function Paginationn () {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Pagination count={3}  className={classes.right} color='primary'/>
+            <Pagination count={3}  className={classes.right} color='primary' />
         </div>
     );
 }

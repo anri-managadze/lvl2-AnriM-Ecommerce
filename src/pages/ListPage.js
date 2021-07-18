@@ -1,9 +1,9 @@
 import React from 'react';
-import MainLayout from "../Layouts/MainLayout";
+import MainLayout from "../layouts/MainLayout";
 import cover from '../cover.jpg'
 import {Box, Container, Grid} from "@material-ui/core";
-import SideBar from "../ComponentPages/SideBar";
-import MainBar from "../ComponentPages/MainBar";
+import SideBar from "../page-component/SideBar";
+import MainBar from "../page-component/MainBar";
 
 
 

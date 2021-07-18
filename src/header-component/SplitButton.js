@@ -9,30 +9,18 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import {makeStyles} from "@material-ui/core/styles";
+import {useStyles} from "./SplitButtonStyle";
 
 const options = ['ENG', 'ქარ', 'DE'];
 
-const butStyles = makeStyles(() => ({
-    background: {
-        backgroundColor:"white",
-        color: 'black',
-        border: 'none',
-        width: '70px'
-    },
-    style:
-        {
-            border: 'none',
-            fontSize: '14px'
-        }
-}));
+
 
 export default function SplitButton() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-    const classes = butStyles();
+    const classes = useStyles();
 
     const handleClick = () => {
         console.info(`You clicked ${options[selectedIndex]}`);
