@@ -5,10 +5,14 @@ import MainLayout from "../layouts/MainLayout";
 import AdminSideBar from "../productpage-component/AdminSideBar";
 import FormDialog from "../productpage-component/FormDialog";
 import {useStyles} from "../productpage-component/ProductPageStyle";
+import {Route, Switch} from "react-router-dom";
+import {ADMIN, TABLE} from "../Roures";
+import {useRouteMatch} from "react-router-dom";
 
 
 const Productpage = () => {
     const classes=useStyles();
+
     return (
         <MainLayout>
             <Box display='flex' justifyContent='space-between' >
@@ -18,7 +22,11 @@ const Productpage = () => {
                     <FormDialog />
                 </Box>
                 <Box margin='0 auto' className={classes.tableside}>
-                    <Table />
+                    <Switch>
+                        <Route path={ADMIN + TABLE}>
+                            <Table />
+                        </Route>
+                    </Switch>
                 </Box>
             </Box>
         </MainLayout>

@@ -11,7 +11,7 @@ import ListPage from "./pages/ListPage";
 import {ADMIN, HOME, LIST, SINGLE} from "./Roures";
 import Productpage from "./pages/productpage";
 
-function App(){
+function App() {
   return (
     <div >
         <Router>
@@ -29,9 +29,9 @@ function App(){
                     <ListPage/>
                 </Route>
             </Switch>
+
         </Router>
     </div>
   );
 }
-
 export default App;
