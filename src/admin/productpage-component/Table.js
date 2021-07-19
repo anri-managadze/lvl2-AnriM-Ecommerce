@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useStyles} from "./TableStyle";
-import Loader from "../page-component/Loader";
+import Loader from "../../page-component/Loader";
 
 
 const Table = () => {
