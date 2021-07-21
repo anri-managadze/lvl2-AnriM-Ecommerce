@@ -4,7 +4,7 @@ import {Box} from "@material-ui/core";
 import SplitButton from "./SplitButton";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
-import {ADMIN} from "../Roures";
+import {ADMIN, SIGN_IN, SIGN_UP} from "../Roures";
 import {useStyles} from "./AppBarMenuStyle";
 
 const AppBarMenu = ({display,textAlign}) => {
@@ -16,8 +16,8 @@ const AppBarMenu = ({display,textAlign}) => {
                     <Box><Button color="inherit" className={classes.btnall}><Link className={classes.link} to={ADMIN}>Admin</Link></Button></Box>
                     <Box><Button color="inherit" className={classes.btnall}><Link className={classes.link}>Shop</Link></Button></Box>
                     <Box><Button color="inherit" className={classes.btnall}><Link className={classes.link}>Contact</Link></Button></Box>
-                    <Box><Button color="inherit" className={classes.btnall}><Link className={classes.link}>Sign in</Link></Button></Box>
-                    <Box><Button color='inherit' className={classes.btnsignup}><Link className={classes.link}>Sign up</Link></Button></Box>
+                    <Box><Button color="inherit" className={classes.btnall}><Link className={classes.link} to={SIGN_IN}>Sign in</Link></Button></Box>
+                    <Box><Button color='inherit' className={classes.btnsignup}><Link className={classes.link} to={SIGN_UP}>Sign up</Link></Button></Box>
                 </Box>
     );
 };

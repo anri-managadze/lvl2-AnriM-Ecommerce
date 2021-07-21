@@ -2,7 +2,7 @@ import {makeStyles} from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
     banner: {
-        marginTop: '150px',
+        marginTop: '50px',
         backgroundColor: '#1266F1',
     },
     media: {

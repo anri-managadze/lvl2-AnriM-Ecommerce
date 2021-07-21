@@ -72,9 +72,9 @@ export default function FullWidthTab() {
                     variant="fullWidth"
                     aria-label="full width tabs example"
                 >
-                    <Tab label="Description" {...a11yProps(0)} component={Link} to={url+DESCRIPTION}/>
-                    <Tab label="Information" {...a11yProps(1)} component={Link} to={url+INFORMATION}/>
-                    <Tab label="Review" {...a11yProps(2)} component={Link} to={url+REVIEW}/>
+                    <Tab label="Description" {...a11yProps(0)} component={Link} to={url+DESCRIPTION} />
+                    <Tab label="Information" {...a11yProps(1)} component={Link} to={url+INFORMATION} />
+                    <Tab label="Review" {...a11yProps(2)} component={Link} to={url+REVIEW} />
                 </Tabs>
             </AppBar>
             <Switch>

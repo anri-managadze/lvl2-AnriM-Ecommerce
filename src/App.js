@@ -8,8 +8,10 @@ import {
 } from "react-router-dom";
 
 import ListPage from "./pages/ListPage";
-import {ADMIN, HOME, LIST, SINGLE} from "./Roures";
-import Productpage from "./pages/productpage";
+import {ADMIN, HOME, LIST, SIGN_IN, SIGN_UP, SINGLE} from "./Roures";
+import Productpage from "./pages/Productpage";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -24,6 +26,12 @@ function App() {
                 </Route>
                 <Route path={ADMIN}>
                     <Productpage />
+                </Route>
+                <Route path={SIGN_IN}>
+                    <SignIn />
+                </Route>
+                <Route path={SIGN_UP}>
+                    <SignUp />
                 </Route>
                 <Route path={HOME}>
                     <ListPage/>

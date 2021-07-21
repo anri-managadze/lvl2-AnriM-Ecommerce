@@ -6,3 +6,5 @@ export const TABLE='/table';
 export const DESCRIPTION='/description';
 export const INFORMATION='/information';
 export const REVIEW='/review';
+export const SIGN_IN='/sign_in';
+export const SIGN_UP='/sign_up';
