@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Container, Grid} from "@material-ui/core";
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
-import Paginationn from "./Pagination";
+import Paginationn from "../../../page-component/Pagination";
 import {makeStyles} from "@material-ui/core/styles";
 import ListState from "./ListState";
 

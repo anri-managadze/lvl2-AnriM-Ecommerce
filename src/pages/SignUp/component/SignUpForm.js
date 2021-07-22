@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormik} from "formik";
 import {Box, Button, TextField} from "@material-ui/core";
-import CheckBox from "../page-component/CheckBox";
+import CheckBox from "../../../page-component/CheckBox";
 import {useStyles} from "./SignUpFormStyle";
 
 const SignUpForm = () => {
@@ -15,8 +15,24 @@ const SignUpForm = () => {
             phone: '',
         },
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-        },
+            fetch('https://reqres.in/api/users', {
+                method: "POST",
+                body: JSON.stringify(
+                    {
+                        firstname: formik.values.firstname,
+                        lastname: formik.values.lastname,
+                        email: formik.values.email,
+                        password: formik.values.password,
+                        phone: formik.values.phone,
+                    }
+                )
+            })
+                .then(res => res.json())
+                .then(json => {
+                    console.log(json)
+                })
+                .catch(error => console.log(error, 'error'))
+        }
     });
     return (
             <form onSubmit={formik.handleSubmit}>

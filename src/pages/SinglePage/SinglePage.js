@@ -1,8 +1,8 @@
 import React from 'react';
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../../layouts/MainLayout";
 import {Box} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-import SingleState from "../singlepage-component/SingleState";
+import SingleState from "./component/SingleState";
 
 const useStyles = makeStyles(() => ({
     prod: {

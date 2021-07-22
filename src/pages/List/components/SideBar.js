@@ -1,13 +1,13 @@
 import React from 'react';
 import {Box, Button,  ListItem, makeStyles, OutlinedInput} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
-import Checkbox from './CheckBox';
+import Checkbox from '../../../page-component/CheckBox';
 
-import RadioBut from "./RadioBut";
-import ContinuousSlider from "./ContinuousSlider";
+import RadioBut from "../../../page-component/RadioBut";
+import ContinuousSlider from "../../../page-component/ContinuousSlider";
 import ListMenu from "./ListMenu";
-import Circle from "./Circle";
-import Ratings from "./Ratings";
+import Circle from "../../../page-component/Circle";
+import Ratings from "../../../page-component/Ratings";
 
 
 function ListItemLink(props) {

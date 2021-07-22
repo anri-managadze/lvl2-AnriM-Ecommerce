@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core";
 export const useStyles=makeStyles(()=> ({
     border:{
         borderRadius: '3px',
-        margin: '80px auto'
+        margin: '20px 0 0 30px'
     },
     tr: {
         color: 'white',
@@ -18,7 +18,7 @@ export const useStyles=makeStyles(()=> ({
         backgroundColor: '#f6f3f3'
     },
     image: {
-        maxWidth: '100px',
-        height: '100px'
+        maxWidth: '50px',
+        height: '50px'
     }
 })) ;

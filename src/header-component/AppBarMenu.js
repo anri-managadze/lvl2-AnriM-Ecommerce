@@ -11,7 +11,7 @@ const AppBarMenu = ({display,textAlign}) => {
     const classes = useStyles();
     return (
                 <Box display={display} textAlign={textAlign} >
-                    <Box><CustomizedBadges /></Box>
+                    <Box marginTop='-6px'><CustomizedBadges /></Box>
                     <Box><SplitButton /></Box>
                     <Box><Button color="inherit" className={classes.btnall}><Link className={classes.link} to={ADMIN}>Admin</Link></Button></Box>
                     <Box><Button color="inherit" className={classes.btnall}><Link className={classes.link}>Shop</Link></Button></Box>

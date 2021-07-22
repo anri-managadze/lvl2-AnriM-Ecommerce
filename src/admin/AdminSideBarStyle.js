@@ -2,11 +2,10 @@ import {makeStyles} from "@material-ui/core";
 
 export const useStyles=makeStyles(()=> ({
     sidebar: {
-        width: '20%',
         marginTop: '50px',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
     },
     link: {
         listStyle: 'none',
@@ -15,6 +14,7 @@ export const useStyles=makeStyles(()=> ({
         color: 'black',
         cursor: 'pointer',
         textDecoration: 'none',
+        display: 'flex',
         '&:hover': {
             color: '#1266F1'
         }

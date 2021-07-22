@@ -1,24 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Button, Container, Grid} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
 import FullWidthTab from "./FullWidthTab";
 import {Rating} from "@material-ui/lab";
 import Quantity from "./ Quantity";
 import RadioButSingle from "./RadioButSingle";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {useParams} from 'react-router-dom';
-import Loader from "../page-component/Loader";
+import Loader from "../../../page-component/Loader";
+import {Api} from "../../../api";
+import {useStyles} from "./SingleStateStyle";
 
-const useStyles = makeStyles({
-    img: {
-        maxWidth: '100%',
-        borderRadius: '5px',
-    },
-    root: {
-        color: '#1266F1',
-        fontSize: '20px'
-    },
-});
 
 const SingleState = () => {
     const classes=useStyles();
@@ -28,30 +19,21 @@ const SingleState = () => {
 
     useEffect(()=>{
         setLoading(true);
-        fetch(`https://fakestoreapi.com/products/${id}`)
-            .then(res => res.json())
-            .then(el => {
-                setData({
-                    id: el.id,
-                    title: el.title,
-                    price: el.price,
-                    category: el.category,
-                    description: el.description,
-                    image: el.image,
-                    model: '\tShirt 5407X',
-                    Color: 'Red',
-                    Delivery: 'USA',
-                });
-                console.log((el))
+        Api.getSingleProduct(id)
+            .then(json=> {
+                setData(json)
+                console.log(json)
             })
             .catch(err=> {console.log(err)})
             .finally(()=> setLoading(false))
-    },[]);
+    },[ ]);
+
     return (
         <Container>
             <Loader isLoading={loading}>
-            {(typeof data!='undefined') ? (<Grid container>
-                        <Grid item xs={12} sm={6} padding='50px ' component={Box}>
+            {!!data.hasOwnProperty('title')}
+                <Grid container>
+                        <Grid item xs={12} sm={5} padding='50px ' component={Box}>
                             <Box><img src={data.image} alt='surati' className={classes.img}/></Box>
                             <Box display='flex' justifyContent='space-between' mt='15px'>
                                 <img src={data.image}
@@ -64,7 +46,7 @@ const SingleState = () => {
                                      alt='surati' width='22%'/>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} sm={6} padding='50px ' component={Box}>
+                        <Grid item xs={12} sm={7} padding='50px ' component={Box}>
                             <Box>
                                 <Box fontSize='20px' color='#4F4F4F' fontWeight='bold'> {data.title}</Box>
                                 <Box marginTop='20px' fontSize='13px'> {data.category}</Box>
@@ -92,16 +74,15 @@ const SingleState = () => {
                                 </Box>
                                 <Box ml='15px'>
                                     <Box color='#554F4F' fontSize='15px'>Select size</Box>
-                                    <Box display='flex' mt='10px'><RadioButSingle/></Box>
+                                    <Box display='flex' mt='10px'><RadioButSingle /></Box>
                                 </Box>
                             </Box>
                             <Box display='flex' mt='25px'>
-                                <Box><Button variant="contained" color="primary">buy Now</Button></Box>
-                                <Box ml='5px'><Button variant="contained"><ShoppingCartIcon/>Add to Cart</Button></Box>
+                                <Box><Button variant="contained" color="primary" className={classes.containedPrimary}>buy Now</Button></Box>
+                                <Box ml='5px'><Button variant="contained" className={classes.contained}><ShoppingCartIcon className={classes.icon}/>Add to Cart</Button></Box>
                             </Box>
-                            }
                         </Grid>
-                </Grid>) : (' ')}
+                </Grid>
             </Loader>
                 <Box padding='0 50px '>
                 <FullWidthTab />

@@ -1,5 +1,5 @@
 import './App.css';
-import SinglePage from "./pages/SinglePage";
+import SinglePage from "./pages/SinglePage/SinglePage";
 
 import {
     BrowserRouter as Router,
@@ -7,37 +7,24 @@ import {
     Route,
 } from "react-router-dom";
 
-import ListPage from "./pages/ListPage";
+import ListPage from "./pages/List/ListPage";
 import {ADMIN, HOME, LIST, SIGN_IN, SIGN_UP, SINGLE} from "./Roures";
-import Productpage from "./pages/Productpage";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+import Productpage from "./pages/ProductPage/Productpage";
+import SignIn from "./pages/SignIn/SignIn";
+import SignUp from "./pages/SignUp/SignUp";
 
 function App() {
   return (
     <div >
         <Router>
             <Switch>
-                <Route path={LIST}>
-                    <ListPage/>
-                </Route>
-                <Route path={SINGLE}>
-                    <SinglePage/>
-                </Route>
-                <Route path={ADMIN}>
-                    <Productpage />
-                </Route>
-                <Route path={SIGN_IN}>
-                    <SignIn />
-                </Route>
-                <Route path={SIGN_UP}>
-                    <SignUp />
-                </Route>
-                <Route path={HOME}>
-                    <ListPage/>
-                </Route>
+                <Route path={LIST} component={ListPage} />
+                <Route path={SINGLE} component={SinglePage} />
+                <Route path={ADMIN} component={Productpage} />
+                <Route path={SIGN_IN} component={SignIn} />
+                <Route path={SIGN_UP} component={SignUp} />
+                <Route path={HOME} component={ListPage} />
             </Switch>
-
         </Router>
     </div>
   );

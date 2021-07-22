@@ -8,14 +8,21 @@ export const useStyles = makeStyles(() => ({
         top: '0',
         zIndex: '1',
 
-        boxShadow: '0px 2px 10px -1px #F4F4F4 !important'
     },
     icon: {
         display: 'flex',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        color: 'black',
+        marginTop: '10px'
     },
     list: {
         textDecoration: 'none',
         color: 'black'
+    },
+    elevation4 : {
+        boxShadow: '0 2px 25px 0 rgb(0 0 0 / 12%)',
+    },
+    headicon: {
+        fontSize: '45px'
     }
 }));
