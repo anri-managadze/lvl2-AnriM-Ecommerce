@@ -11,18 +11,21 @@ const SignInForm = () => {
         initialValues: {
             email: '',
             password: '',
-
         },
         onSubmit: values => {
             console.log(values)
             fetch('http://159.65.126.180/api/auth/login',{
                 method:"POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json'
+                },
                 body:JSON.stringify(
                     {
                         email: formik.values.email,
                         password: formik.values. password,
                     }
-                )
+                ),
             })
                 .then(res=>res.json())
                 .then(json=> {

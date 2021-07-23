@@ -21,8 +21,8 @@ function App() {
                 <Route path={LIST} component={ListPage} />
                 <Route path={SINGLE} component={SinglePage} />
                 <Route path={ADMIN} component={Productpage} />
-                <Route path={SIGN_IN} component={SignIn} />
-                <Route path={SIGN_UP} component={SignUp} />
+                <Route exact path={SIGN_IN} component={SignIn} />
+                <Route exact path={SIGN_UP} component={SignUp} />
                 <Route path={HOME} component={ListPage} />
             </Switch>
         </Router>

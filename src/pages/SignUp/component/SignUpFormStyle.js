@@ -2,11 +2,6 @@ import {makeStyles} from "@material-ui/core/styles";
 
 export const useStyles = makeStyles(() => ({
     fname: {
-        width: '49%',
-        zIndex: '0'
-    },
-    lname: {
-        width: '49%',
         zIndex: '0'
     },
     email: {
