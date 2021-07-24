@@ -1,17 +1,26 @@
-import React from 'react';
-import {FormikProvider, useFormik} from 'formik';
+import React, {useState} from 'react';
+import {ErrorMessage, FormikProvider, useFormik} from 'formik';
 import CheckBox from "../../../page-component/CheckBox";
 import {Box, Button, TextField} from "@material-ui/core";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {useStyles} from "./SignInFormStyle";
+import * as Yup from "yup";
+import {PRIVATE} from "../../../Roures";
+
 
 const SignInForm = () => {
     const classes=useStyles();
+    const [login,setLogin]=useState();
+
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
         },
+        validationSchema :Yup.object().shape({
+            email: Yup.string().email('Invalid email').required('Required'),
+            password: Yup.string().required('Password is required'),
+        }),
         onSubmit: values => {
             console.log(values)
             fetch('http://159.65.126.180/api/auth/login',{
@@ -29,27 +38,33 @@ const SignInForm = () => {
             })
                 .then(res=>res.json())
                 .then(json=> {
+                    setLogin(true)
                     console.log(json)
                 })
                 .catch(error => console.log(error, 'error'));
         },
     });
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <FormikProvider value={formik} >
-                <Box className={classes.field}>
-                    <TextField type="email" name="email"   variant="outlined" label="Your Email"  size="small" onChange={formik.handleChange} value={formik.values.email} className={classes.field1} />
-                    <TextField type="password" name="password"  variant="outlined" label="Your Password"  size="small" onChange={formik.handleChange} value={formik.values.password} className={classes.field2}/>
+        <FormikProvider value={formik}>
+            <form onSubmit={formik.handleSubmit}>
+                <FormikProvider value={formik} >
+                    <Box className={classes.field}>
+                        <TextField type="email" name="email"   variant="outlined" label="Your Email"  size="small" onChange={formik.handleChange} value={formik.values.email} className={classes.field1} />
+                            <ErrorMessage name='email'/>
+                        <TextField type="password" name="password"  variant="outlined" label="Your Password"  size="small" onChange={formik.handleChange} value={formik.values.password} className={classes.field2}/>
+                            <ErrorMessage name='password'/>
+                    </Box>
+                    </FormikProvider>
+                <Box display='flex' justifyContent='space-between' marginTop='15px'>
+                    <CheckBox label='REMEMBER ME' value='remember'/>
+                    <Link to='#' className={classes.link}> Forgot password? </Link>
                 </Box>
-                </FormikProvider>
-            <Box display='flex' justifyContent='space-between' marginTop='15px'>
-                <CheckBox label='REMEMBER ME' value='remember'/>
-                <Link to='#' className={classes.link}> Forgot password? </Link>
-            </Box>
-            <Box textAlign='center'>
-                <Button type="submit" className={classes.btn} variant="contained" >Sign In</Button>
-            </Box>
-        </form>
-    );
+                <Box textAlign='center'>
+                    <Button type="submit" className={classes.btn} variant="contained" >Sign In</Button>
+                </Box>
+            </form>
+            {login&& <Redirect to={PRIVATE} />}
+        </FormikProvider>
+    )
 };
 export  default SignInForm;

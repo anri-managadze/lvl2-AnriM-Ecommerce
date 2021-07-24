@@ -3,7 +3,8 @@ import MainLayout from "../../layouts/MainLayout";
 import cover from '../../cover.jpg'
 import {Box, Container, Grid} from "@material-ui/core";
 import SideBar from "./components/SideBar";
-import MainBar from "./components/MainBar";
+
+import ListState from "./components/ListState";
 
 
 
@@ -16,7 +17,7 @@ const ListPage = () => {
                     <Container>
                         <Grid container component={Box}  mt='50px'>
                             <Grid item xs={12} sm={3}> <SideBar /> </Grid>
-                            <Grid item xs={12} sm={9}> <MainBar /> </Grid>
+                            <Grid item xs={12} sm={9}> <ListState /> </Grid>
                         </Grid>
                     </Container>
         </MainLayout>

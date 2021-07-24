@@ -1,15 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Card, CardActionArea, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
+import {Box, Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography} from "@material-ui/core";
 import {SINGLE} from "../../../Roures";
 import {Link} from "react-router-dom";
 import Loader from "../../../page-component/Loader";
 import {useStyles} from "./ListStateStyle";
 import {Api} from "../../../api";
+import ViewListIcon from "@material-ui/icons/ViewList";
+import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import {Pagination} from "@material-ui/lab";
 
 const ListState = () => {
     const classes=useStyles();
     const [data,setData]=useState([]);
     const [loading,setLoading]=useState(false);
+
 
     useEffect(()=>{
         setLoading(true);
@@ -23,8 +27,26 @@ const ListState = () => {
             .finally(()=>setLoading(false))
     },[]);
 
+    const onChange=(e,p)=> {
+        setLoading(true)
+        Api.getProductList(p)
+            .then(data=>setData(data))
+            .finally(()=> setLoading(false))
+    }
+
     return (
+        <Container>
+            <Grid container  >
+                <Grid item xs={12} sm={6} className={classes.media}>
+                    <ViewListIcon   />
+                    <ViewModuleIcon />
+                </Grid>
+                <Grid item xs={12} sm={6} component={Box} justifyContent='flex-end' className={classes.media}>
+                    <Pagination count={10} defaultPage={1} onChange={onChange}/>
+                </Grid>
+            </Grid>
         <Box>
+
             <Loader isLoading={loading}>
             {!!data.hasOwnProperty('title') }
                 <Grid container>
@@ -58,7 +80,17 @@ const ListState = () => {
 
             </Loader>
         </Box>
+            <Grid container   >
+                <Grid item xs={12} sm={6} className={classes.media}>
+                    <ViewListIcon />
+                    <ViewModuleIcon />
+                </Grid>
+                <Grid item xs={12} sm={6} className={classes.media}>
+                    <Pagination count={10} defaultPage={1} onChange={onChange} color='primary' />
+                </Grid>
+            </Grid>
 
+        </Container>
     )
 }
 
