@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography} from "@material-ui/core";
-import {SINGLE} from "../../../Roures";
+import {SINGLE} from "../../../roures";
 import {Link} from "react-router-dom";
 import Loader from "../../../page-component/Loader";
 import {useStyles} from "./ListStateStyle";

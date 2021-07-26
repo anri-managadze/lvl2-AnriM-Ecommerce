@@ -3,15 +3,16 @@ import {ErrorMessage, FormikProvider, useFormik} from "formik";
 import {Box, Button, TextField} from "@material-ui/core";
 import CheckBox from "../../../page-component/CheckBox";
 import {useStyles} from "./SignUpFormStyle";
-import { Redirect } from 'react-router-dom';
-import {SIGN_IN} from "../../../Roures";
+import { useHistory  } from 'react-router-dom';
+import {SIGN_IN} from "../../../roures";
 import * as Yup from 'yup';
 
 
 
 const SignUpForm = () => {
     const classes=useStyles();
-    const [isregister,setIsregister]=useState();
+    const history= useHistory();
+    const [error,setError]=useState('');
 
 
     const formik = useFormik({
@@ -44,12 +45,17 @@ const SignUpForm = () => {
                         password_confirmation: formik.values.password_confirmation,
                     }
                 ),
-
             })
-                .then(res => res.json())
+                .then(res => {
+                    if (res.ok) {
+                    return res.json()
+                    }else {
+                        throw new Error(setError('error'))
+                    }
+                })
                 .then(json => {
                     console.log(json)
-                    setIsregister(true)
+                    history.push(SIGN_IN)
                 })
                 .catch(error => console.log(error, 'error'))
         }
@@ -58,19 +64,23 @@ const SignUpForm = () => {
 
     return (
         <>
-        {isregister ? <Redirect to={SIGN_IN} /> : (
             <FormikProvider value={formik}>
             <form onSubmit={formik.handleSubmit}>
                 <Box display='flex' flexDirection='column' marginTop='50px'>
                     <TextField type="text" name="name" id='name'  variant="outlined" label="First Name" onChange={formik.handleChange} value={formik.values.name} size="small" className={classes.fname}/>
                         <ErrorMessage name='name'/>
+
                     <TextField type="email" name="email" id='email'  variant="outlined" label="Your Email"  size="small" onChange={formik.handleChange} value={formik.values.email} className={classes.email}/>
                         <ErrorMessage name='email'/>
+                        {error? ( <Box fontSize='14px' color='red'><label>Email has already been registered</label></Box>) : ('')}
+
                     <TextField type="password" name="password" id='password' variant="outlined" label="Your Password"  size="small" onChange={formik.handleChange} value={formik.values.password} className={classes.pass}/>
                         <ErrorMessage name='password'/>
-                    <Box fontSize='14px' color='#6C757D'><label>At least 8 characters and 1 digit</label></Box>
+                        <Box fontSize='14px' color='#6C757D'><label>At least 8 characters and 1 digit</label></Box>
+
                     <TextField type="password" name="password_confirmation" id='password_confirmation' variant="outlined" label="Your Password Confirmation"  size="small" onChange={formik.handleChange} value={formik.values.password_confirmation} className={classes.pass}/>
                         <ErrorMessage name='password'/>
+
                 </Box>
 
             <Box marginTop='15px' display='flex' justifyContent='center'>
@@ -81,7 +91,6 @@ const SignUpForm = () => {
             </Box>
             </form>
         </FormikProvider>
-        )}
     </>
     )
 };

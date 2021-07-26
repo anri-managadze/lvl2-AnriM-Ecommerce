@@ -4,7 +4,7 @@ import {Box} from "@material-ui/core";
 import {useStyles} from "./components/SignInStyle";
 import SignInForm from "./components/SignInForm";
 import {Link} from "react-router-dom";
-import {SIGN_UP} from "../../Roures";
+import {SIGN_UP} from "../../roures";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';

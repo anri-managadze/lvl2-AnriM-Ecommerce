@@ -1,10 +1,10 @@
 import AppBar from '@material-ui/core/AppBar';
 import {Box, Container, Hidden} from "@material-ui/core";
 import AppBarMenu from "./AppBarMenu";
-import ListMenu from "../pages/List/components/ListMenu";
+import ListMenu from "../../pages/List/components/ListMenu";
 import MenuIcon from '@material-ui/icons/Menu';
 import {Link} from "react-router-dom";
-import {LIST} from "../Roures";
+import {LIST} from "../../roures";
 import {useStyles} from "./HeaderAppBarStyle";
 import {FaMdb} from "react-icons/fa";
 

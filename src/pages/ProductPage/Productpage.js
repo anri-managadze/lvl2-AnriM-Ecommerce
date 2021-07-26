@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminLayout from "../../layouts/AdminLayout";
 import {Route, Switch} from "react-router-dom";
-import {ADMIN, TABLE} from "../../Roures";
+import {ADMIN, TABLE} from "../../roures";
 import FormDialog from "../../admin/FormDialog";
 import Table from "../../admin/productpage-component/Table";
 

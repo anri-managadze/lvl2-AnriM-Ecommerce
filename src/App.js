@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 import ListPage from "./pages/List/ListPage";
-import {ADMIN, HOME, LIST, PRIVATE, SIGN_IN, SIGN_UP, SINGLE} from "./Roures";
+import {ADMIN, HOME, LIST, PRIVATE, SIGN_IN, SIGN_UP, SINGLE} from "./roures";
 import Productpage from "./pages/ProductPage/Productpage";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
@@ -24,8 +24,8 @@ function App() {
                 <Route path={ADMIN} component={Productpage} />
                 <Route exact path={SIGN_IN} component={SignIn} />
                 <Route exact path={SIGN_UP} component={SignUp} />
-                <Route path={HOME} component={ListPage} />
                 <Route exact path={PRIVATE} component={PrivatePage} />
+                <Route path={HOME} component={ListPage} />
             </Switch>
         </Router>
     </div>

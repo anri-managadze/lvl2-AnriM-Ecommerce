@@ -10,7 +10,7 @@ import Description from "./Description";
 import Information from "./ Information";
 import Review from "./Review";
 import {Link, Route, Switch, useRouteMatch} from "react-router-dom";
-import {DESCRIPTION, INFORMATION, REVIEW, SINGLE} from "../../../Roures";
+import {DESCRIPTION, INFORMATION, REVIEW, SINGLE} from "../../../roures";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

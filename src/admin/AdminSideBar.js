@@ -2,7 +2,7 @@ import React from 'react';
 import {useStyles} from "./AdminSideBarStyle";
 import {Box} from "@material-ui/core";
 import {Link} from "react-router-dom";
-import {TABLE} from "../Roures";
+import {TABLE} from "../roures";
 import {useRouteMatch} from "react-router-dom";
 import PeopleIcon from '@material-ui/icons/People';
 import CategoryIcon from '@material-ui/icons/Category';

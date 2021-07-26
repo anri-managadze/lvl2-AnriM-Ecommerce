@@ -2,15 +2,18 @@ import React, {useState} from 'react';
 import {ErrorMessage, FormikProvider, useFormik} from 'formik';
 import CheckBox from "../../../page-component/CheckBox";
 import {Box, Button, TextField} from "@material-ui/core";
-import {Link, Redirect} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {useStyles} from "./SignInFormStyle";
 import * as Yup from "yup";
-import {PRIVATE} from "../../../Roures";
+import {PRIVATE} from "../../../roures";
+import {Api} from "../../../api";
+
 
 
 const SignInForm = () => {
     const classes=useStyles();
-    const [login,setLogin]=useState();
+    const history= useHistory();
+    const [error,setError]=useState('');
 
     const formik = useFormik({
         initialValues: {
@@ -23,22 +26,23 @@ const SignInForm = () => {
         }),
         onSubmit: values => {
             console.log(values)
-            fetch('http://159.65.126.180/api/auth/login',{
-                method:"POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'accept': 'application/json'
-                },
+            Api.postSighIn()
                 body:JSON.stringify(
                     {
                         email: formik.values.email,
                         password: formik.values. password,
                     }
-                ),
-            })
-                .then(res=>res.json())
+                )
+
+                .then(res => {
+                    if (res.ok) {
+                        return res.json()
+                    }else {
+                        throw new Error(setError('error'))
+                    }
+                })
                 .then(json=> {
-                    setLogin(true)
+                    history.push(PRIVATE)
                     console.log(json)
                 })
                 .catch(error => console.log(error, 'error'));
@@ -54,6 +58,7 @@ const SignInForm = () => {
                         <TextField type="password" name="password"  variant="outlined" label="Your Password"  size="small" onChange={formik.handleChange} value={formik.values.password} className={classes.field2}/>
                             <ErrorMessage name='password'/>
                     </Box>
+                    {error? ( <Box fontSize='24px' color='red'><label>Email or Password is Wrong</label></Box>) : ('')}
                     </FormikProvider>
                 <Box display='flex' justifyContent='space-between' marginTop='15px'>
                     <CheckBox label='REMEMBER ME' value='remember'/>
@@ -63,7 +68,6 @@ const SignInForm = () => {
                     <Button type="submit" className={classes.btn} variant="contained" >Sign In</Button>
                 </Box>
             </form>
-            {login&& <Redirect to={PRIVATE} />}
         </FormikProvider>
     )
 };

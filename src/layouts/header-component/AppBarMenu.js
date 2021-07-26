@@ -4,7 +4,7 @@ import {Box} from "@material-ui/core";
 import SplitButton from "./SplitButton";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
-import {ADMIN, SIGN_IN, SIGN_UP} from "../Roures";
+import {ADMIN, SIGN_IN, SIGN_UP} from "../../roures";
 import {useStyles} from "./AppBarMenuStyle";
 
 const AppBarMenu = ({display,textAlign}) => {
