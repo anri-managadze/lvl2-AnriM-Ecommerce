@@ -1,99 +1,145 @@
-import React, {useEffect, useState} from 'react';
-import {Box, Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography} from "@material-ui/core";
-import {SINGLE} from "../../../roures";
-import {Link} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Container,
+  Grid,
+  Typography,
+} from "@material-ui/core";
+import { SINGLE } from "../../../roures";
+import { Link } from "react-router-dom";
 import Loader from "../../../page-component/Loader";
-import {useStyles} from "./ListStateStyle";
-import {Api} from "../../../api";
+import { useStyles } from "./ListStateStyle";
+import { Api } from "../../../api";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
-import {Pagination} from "@material-ui/lab";
+import { Pagination } from "@material-ui/lab";
 
 const ListState = () => {
-    const classes=useStyles();
-    const [data,setData]=useState([]);
-    const [loading,setLoading]=useState(false);
+  const classes = useStyles();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page,setPage]=useState(1 ,{
+    // page: 1,
+    // total: 0
+  })
 
 
-    useEffect(()=>{
-        setLoading(true);
-        Api.getProductList()
-            .then(el => {
-                setData(el);
-                console.log((el))
+  useEffect(() => {
+    setLoading(true);
+    Api.getProductList()
+      .then((el) => {
+
+        // setPage({
+        //   page: 1,
+        //   total: 100
+        // })
+
+        setData(el);
+        console.log(el);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+  }, []);
+
+    useEffect( () => {
+        Api.getProductList(page)
+            .then((data) => {
+
+                // setPage({
+                //   ...page,
+                //   page: p
+                // })
+
+                setData(data)
             })
-            .catch(err=>
-                console.log(err))
-            .finally(()=>setLoading(false))
-    },[]);
-
-    const onChange=(e,p)=> {
-        setLoading(true)
-        Api.getProductList(p)
-            .then(data=>setData(data))
-            .finally(()=> setLoading(false))
+            .finally(() => setLoading(false));
+    },[page]);
+    const onChange = (e,p) => {
+      setPage(p)
     }
 
-    return (
-        <Container>
-            <Grid container  >
-                <Grid item xs={12} sm={6} className={classes.media}>
-                    <ViewListIcon   />
-                    <ViewModuleIcon />
+  return (
+    <Container>
+      <Grid container>
+        <Grid item xs={12} sm={6} className={classes.media}>
+          <ViewListIcon />
+          <ViewModuleIcon />
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          component={Box}
+          justifyContent="flex-end"
+          className={classes.media}
+        >
+          <Pagination count={10} defaultPage={page} page={page}  onChange={onChange} color='primary'/>
+        </Grid>
+      </Grid>
+      <Box>
+        <Loader isLoading={loading}>
+          {!!data.hasOwnProperty("title")}
+          <Grid container>
+            {data.map((el, index) => {
+              return (
+                <Grid key={index} item xs={12} sm={4} component={Box} p="5px">
+                  <Link
+                    to={SINGLE.replace(":id", el.id)}
+                    className={classes.list}
+                  >
+                    <Card className={classes.root}>
+                      <CardActionArea>
+                        <CardMedia
+                          component="img"
+                          alt="surati"
+                          height="240"
+                          image={el.image}
+                        />
+                        <CardContent>
+                          <Typography
+                            variant="body2"
+                            color="textSecondary"
+                            component="p"
+                            className={classes.title}
+                          >
+                            {el.title}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            color="textSecondary"
+                            component="p"
+                            className={classes.price}
+                          >
+                            $ {el.price}
+                          </Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Link>
                 </Grid>
-                <Grid item xs={12} sm={6} component={Box} justifyContent='flex-end' className={classes.media}>
-                    <Pagination count={10} defaultPage={1} onChange={onChange}/>
-                </Grid>
-            </Grid>
-        <Box>
-
-            <Loader isLoading={loading}>
-            {!!data.hasOwnProperty('title') }
-                <Grid container>
-                    {data.map((el, index) => {
-                        return (
-                            <Grid key={index} item xs={12} sm={4} component={Box} p='5px' >
-                                <Link to={SINGLE.replace(':id', el.id)} className={classes.list} >
-                                    <Card className={classes.root}>
-                                        <CardActionArea>
-                                            <CardMedia
-                                                component="img"
-                                                alt="surati"
-                                                height="240"
-                                                image={el.image}
-                                            />
-                                            <CardContent>
-                                                <Typography variant="body2" color="textSecondary" component="p" className={classes.title}>
-                                                    {el.title}
-                                                </Typography>
-                                                <Typography variant="body2" color="textSecondary" component="p" className={classes.price}>
-                                                   $ {el.price}
-                                                </Typography>
-                                            </CardContent>
-                                        </CardActionArea>
-                                    </Card>
-                                </Link>
-                            </Grid>
-                        )
-                    })}
-                </Grid>
-
-            </Loader>
-        </Box>
-            <Grid container   >
-                <Grid item xs={12} sm={6} className={classes.media}>
-                    <ViewListIcon />
-                    <ViewModuleIcon />
-                </Grid>
-                <Grid item xs={12} sm={6} className={classes.media}>
-                    <Pagination count={10} defaultPage={1} onChange={onChange} color='primary' />
-                </Grid>
-            </Grid>
-
-        </Container>
-    )
-}
-
-
+              );
+            })}
+          </Grid>
+        </Loader>
+      </Box>
+      <Grid container>
+        <Grid item xs={12} sm={6} className={classes.media}>
+          <ViewListIcon />
+          <ViewModuleIcon />
+        </Grid>
+        <Grid item xs={12} sm={6} className={classes.media}>
+          <Pagination
+              count={10} defaultPage={page} page={page}  onChange={onChange}
+              color="primary"
+          />
+        </Grid>
+      </Grid>
+    </Container>
+  );
+};
 
 export default ListState;

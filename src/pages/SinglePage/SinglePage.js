@@ -1,30 +1,28 @@
-import React from 'react';
+import React from "react";
 import MainLayout from "../../layouts/MainLayout";
-import {Box} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
+import { Box } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import SingleState from "./component/SingleState";
 
 const useStyles = makeStyles(() => ({
-    prod: {
-        minWidth: '100%',
-        zIndex: '1',
-        backgroundColor: '#FBFBFB',
-        padding: '100px 0 50px 0',
-        textAlign: 'center',
-        fontSize: '30px'
-    },
-
+  prod: {
+    minWidth: "100%",
+    zIndex: "1",
+    backgroundColor: "#FBFBFB",
+    padding: "100px 0 50px 0",
+    textAlign: "center",
+    fontSize: "30px",
+  },
 }));
 
-
 const SinglePage = () => {
-    const classes=useStyles();
-    return (
-        <MainLayout>
-            <Box className={classes.prod}>Product page</Box>
-            <SingleState />
-        </MainLayout>
-    );
+  const classes = useStyles();
+  return (
+    <MainLayout>
+      <Box className={classes.prod}>Product page</Box>
+      <SingleState />
+    </MainLayout>
+  );
 };
 
 export default SinglePage;

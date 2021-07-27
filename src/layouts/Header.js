@@ -1,13 +1,12 @@
-import React from 'react';
+import React from "react";
 import HeaderAppBar from "./header-component/HeaderAppBar";
 
-
 const Header = () => {
-    return (
-            <div>
-                <HeaderAppBar />
-            </div>
-    );
+  return (
+    <div>
+      <HeaderAppBar />
+    </div>
+  );
 };
 
 export default Header;
