@@ -36,7 +36,5 @@ export const Api = {
     sighUp: function (name,email, password,password_confirmation) {
         return Api.getData("register",{name,email, password,password_confirmation},'post');
     },
-    persPage: function (){
-    return Api.getData('auth/me',{},'get')
-    }
+
 };
