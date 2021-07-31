@@ -6,7 +6,7 @@ import Quantity from "./ Quantity";
 import RadioButSingle from "./RadioButSingle";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useParams } from "react-router-dom";
-import Loader from "../../../page-component/Loader";
+import Loader from "../../../component/Loader";
 import { Api } from "../../../api";
 import { useStyles } from "./SingleStateStyle";
 
@@ -27,7 +27,7 @@ const SingleState = () => {
         console.log(err);
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [id]);
 
   return (
     <Container>

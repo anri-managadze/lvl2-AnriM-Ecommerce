@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { SINGLE } from "../../../roures";
 import { Link } from "react-router-dom";
-import Loader from "../../../page-component/Loader";
+import Loader from "../../../component/Loader";
 import { useStyles } from "./ListStateStyle";
 import { Api } from "../../../api";
 import ViewListIcon from "@material-ui/icons/ViewList";
@@ -22,40 +22,16 @@ const ListState = () => {
   const classes = useStyles();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [page,setPage]=useState(1 ,{
-    // page: 1,
-    // total: 0
-  })
+  const [page,setPage]=useState(1 );
 
-
-  useEffect(() => {
-    setLoading(true);
-    Api.getProductList()
-      .then((el) => {
-
-        // setPage({
-        //   page: 1,
-        //   total: 100
-        // })
-
-        setData(el);
-        console.log(el);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
-  }, []);
 
     useEffect( () => {
+        setLoading(true);
         Api.getProductList(page)
             .then((data) => {
-
-                // setPage({
-                //   ...page,
-                //   page: p
-                // })
-
                 setData(data)
             })
+            .catch((err) => console.log(err))
             .finally(() => setLoading(false));
     },[page]);
     const onChange = (e,p) => {

@@ -7,13 +7,13 @@ import {
   OutlinedInput,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import Checkbox from "../../../page-component/CheckBox";
+import Checkbox from "../../../component/CheckBox";
 
-import RadioBut from "../../../page-component/RadioBut";
-import ContinuousSlider from "../../../page-component/ContinuousSlider";
+import RadioBut from "../../../component/RadioBut";
+import ContinuousSlider from "../../../component/ContinuousSlider";
 import ListMenu from "./ListMenu";
-import Circle from "../../../page-component/Circle";
-import Ratings from "../../../page-component/Ratings";
+import Circle from "../../../component/Circle";
+import Ratings from "../../../component/Ratings";
 
 function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;

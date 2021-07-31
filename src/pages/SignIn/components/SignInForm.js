@@ -1,17 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import { ErrorMessage,  FormikProvider, useFormik } from "formik";
-import CheckBox from "../../../page-component/CheckBox";
+import CheckBox from "../../../component/CheckBox";
 import { Box, Button, TextField } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import { useStyles } from "./SignInFormStyle";
 import * as Yup from "yup";
 import { PRIVATE } from "../../../roures";
 import { Api } from "../../../api";
+import {user, UserContext} from "../../../store/UserContextProvider";
 
 const SignInForm = () => {
   const classes = useStyles();
   const history = useHistory();
 
+  const userData=useContext(UserContext);
 
   const formik = useFormik({
     initialValues: {
@@ -19,33 +21,32 @@ const SignInForm = () => {
       password: "",
     },
     validationSchema: Yup.object().shape({
-      email: Yup.string().email("Invalid email").required("Required"),
-      password: Yup.string().required("Password is required"),
+      email: Yup.string().email("Invalid email").required(<Box color='red'>Required</Box>),
+      password: Yup.string().required(<Box color='red'>Password is required</Box>),
     }),
     onSubmit: (values) => {
       console.log(values);
       Api.sighIn(formik.values.email,formik.values.password)
-          .then((res) => {
-            if (res.ok) {
-              return res.json();
-            } else {
-              throw new Error(res.text());
-            }
-          })
           .then((json) => {
+            localStorage.setItem('userinfo',JSON.stringify(json))
+            userData.setData({
+              ...userData.data,
+              isLogedIn: true,
+              isLogedOut: false,
+              user: user.user
+            })
             history.push(PRIVATE);
-            console.log(json);
         })
         .catch((error) => {
-          setErrors(error)
+
           console.log(error, "error")
         }
       );
     },
   });
-  const {setErrors}=formik;
 
   return (
+
     <FormikProvider value={formik}>
       <form onSubmit={formik.handleSubmit}>
         <FormikProvider value={formik}>
@@ -61,6 +62,7 @@ const SignInForm = () => {
               className={classes.field1}
             />
             <ErrorMessage name="email" />
+
             <TextField
               type="password"
               name="password"
@@ -87,6 +89,8 @@ const SignInForm = () => {
         </Box>
       </form>
     </FormikProvider>
+
   );
+
 };
 export default SignInForm;

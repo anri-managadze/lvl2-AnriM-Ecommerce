@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { ErrorMessage, FormikProvider, useFormik } from "formik";
 import { Box, Button, TextField } from "@material-ui/core";
-import CheckBox from "../../../page-component/CheckBox";
+import CheckBox from "../../../component/CheckBox";
 import { useStyles } from "./SignUpFormStyle";
 import { useHistory } from "react-router-dom";
 import { SIGN_IN } from "../../../roures";
@@ -30,16 +30,8 @@ const SignUpForm = () => {
     onSubmit: (values) => {
       console.log(values)
       Api.sighUp(formik.values.name,formik.values.email,formik.values.password,formik.values.password_confirmation)
-          .then((res) => {
-            if (res.ok) {
-              return res.json();
-            } else {
-              throw new Error(res.text());
-            }
-          })
         .then((json) => {
           console.log(json);
-          localStorage.setItem('token', JSON.stringify(json))
           history.push(SIGN_IN);
         })
         .catch((error) => console.log(error, "error"));

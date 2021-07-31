@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useStyles } from "./TableStyle";
-import Loader from "../../page-component/Loader";
+import Loader from "../../component/Loader";
 import {FormControl, MenuItem, Select} from "@material-ui/core";
 
 const Table = () => {
   const classes = useStyles();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [limit,setLimit]=useState('');
+  const [limit,setLimit]=useState(5);
 
 
   useEffect(() => {

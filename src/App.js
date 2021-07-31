@@ -9,6 +9,8 @@ import Productpage from "./pages/ProductPage/Productpage";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import PrivatePage from "./pages/PrivatePage/PrivatePage";
+import PrivateRoute from "./store/PrivateRoute";
+
 
 function App() {
   return (
@@ -20,7 +22,7 @@ function App() {
           <Route path={ADMIN} component={Productpage} />
           <Route exact path={SIGN_IN} component={SignIn} />
           <Route exact path={SIGN_UP} component={SignUp} />
-          <Route exact path={PRIVATE} component={PrivatePage} />
+          <PrivateRoute exact path={PRIVATE} component={PrivatePage} />
           <Route path={HOME} component={ListPage} />
         </Switch>
       </Router>
