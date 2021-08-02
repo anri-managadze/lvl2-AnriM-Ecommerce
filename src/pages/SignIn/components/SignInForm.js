@@ -7,7 +7,9 @@ import { useStyles } from "./SignInFormStyle";
 import * as Yup from "yup";
 import { PRIVATE } from "../../../roures";
 import { Api } from "../../../api";
-import {user, UserContext} from "../../../store/UserContextProvider";
+import { UserContext} from "../../../store/UserContextProvider";
+
+
 
 const SignInForm = () => {
   const classes = useStyles();
@@ -28,17 +30,16 @@ const SignInForm = () => {
       console.log(values);
       Api.sighIn(formik.values.email,formik.values.password)
           .then((json) => {
-            localStorage.setItem('userinfo',JSON.stringify(json))
+            localStorage.setItem('token',json.token.access_token);
             userData.setData({
               ...userData.data,
               isLogedIn: true,
               isLogedOut: false,
-              user: user.user
+              user: json.user
             })
             history.push(PRIVATE);
         })
         .catch((error) => {
-
           console.log(error, "error")
         }
       );

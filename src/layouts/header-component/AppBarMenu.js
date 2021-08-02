@@ -9,13 +9,10 @@ import { useStyles } from "./AppBarMenuStyle";
 import {UserContext} from "../../store/UserContextProvider";
 
 
-
 const AppBarMenu = ({ display, textAlign }) => {
   const classes = useStyles();
   const userData=useContext(UserContext);
   const history = useHistory();
-
-
 
   const LogOut=()=> {
       userData.setData ({
@@ -24,6 +21,7 @@ const AppBarMenu = ({ display, textAlign }) => {
           isLogedOut: true,
           user: null
       })
+      localStorage.removeItem('token')
       history.push(HOME)
   }
 

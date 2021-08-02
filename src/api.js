@@ -1,17 +1,16 @@
 import { serializeProductList } from "./serializes/product";
 import { serializeSingleProduct } from "./serializes/single";
-import {user} from "./store/UserContextProvider";
 
 
 export const Api = {
   baseUrl: "http://159.65.126.180/api/",
   getData: function (url, params, method = "get") {
     return fetch(this.baseUrl + url, {
-
       method: method.toUpperCase(),
       headers: {
         "Content-Type": "application/json",
         accept: "application/json",
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify(params),
     })
@@ -19,10 +18,12 @@ export const Api = {
           if (res.ok) {
             return res.json();
           } else {
-            throw new Error(res);
+            throw new Error('');
           }
         })
-
+        .catch((error) => {
+            console.log(error)
+        });
   },
   getProductList: function (page) {
     return Api.getData( 'products?page='+page)
@@ -44,17 +45,7 @@ export const Api = {
         return Api.getData("register",{name,email, password,password_confirmation},'post');
     },
     privatePage: function () {
-        fetch(' http://159.65.126.180/api/auth/me',{
-            method: 'POST',
-            body: JSON.stringify(
-                {
-                    access_token: user.token.access_token,
-                }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization':`Bearer ${user.token.access_token}`
-            }
-        })
+        return Api.getData('auth/me',{},'post')
     }
 
 };

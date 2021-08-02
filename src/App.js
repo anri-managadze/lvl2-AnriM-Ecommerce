@@ -10,9 +10,23 @@ import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import PrivatePage from "./pages/PrivatePage/PrivatePage";
 import PrivateRoute from "./store/PrivateRoute";
+import {Api} from "./api";
+import {useEffect} from "react";
+
 
 
 function App() {
+  const isToken = () => {
+    const token =localStorage.getItem('token');
+    if (token) {
+      Api.privatePage()
+    }
+  }
+
+  useEffect(() => {
+    isToken();
+  }, []);
+
   return (
     <div>
       <Router>

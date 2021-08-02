@@ -1,7 +1,7 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import {Box, Card, CardActionArea, CardContent, CardMedia, makeStyles, Typography} from "@material-ui/core";
 import MainLayout from "../../layouts/MainLayout";
-import {user, UserContext} from "../../store/UserContextProvider";
+import {UserContext} from "../../store/UserContextProvider";
 
 const useStyles = makeStyles({
     root: {
@@ -14,12 +14,7 @@ const useStyles = makeStyles({
 const PrivatePage = () => {
     const userData=useContext(UserContext);
     const classes = useStyles();
-    useEffect(() => {
-        userData.setData({
-            ...userData.data,
-            user: user.user
-        })
-    },[]);
+
 
   return (
     <MainLayout>
