@@ -1,17 +1,17 @@
 import React, {useContext} from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import {UserContext} from "./UserContextProvider";
+import {UserContext} from "../store/UserContextProvider";
 import {HOME} from "../roures";
-import Loader from "../component/Loader";
+import Loader from "./Loader";
 
 
 const PrivateRoute = ({component: Component, ...rest}) => {
     const userData=useContext(UserContext);
-
+    const token =localStorage.getItem('token');
 
     return (
         <Route {...rest} render={props => (
-            userData.data.isLogedIn  ?
+            userData.data.isLogedIn || token  ?
                 <Loader >
                     <Component {...props} />
                 </Loader>

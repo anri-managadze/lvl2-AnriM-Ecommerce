@@ -7,6 +7,7 @@ export const UserContextProvider = ({children}) => {
     let [data,setData]= useState( {
         isLogedIn: false,
         isLogedOut: true,
+        user: null
     });
     return (
         <UserContext.Provider value={

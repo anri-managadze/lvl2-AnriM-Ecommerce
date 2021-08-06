@@ -7,7 +7,7 @@ import Productpage from "./pages/ProductPage/Productpage";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import PrivatePage from "./pages/PrivatePage/PrivatePage";
-import PrivateRoute from "./store/PrivateRoute";
+import PrivateRoute from "./component/PrivateRoute";
 import {Api} from "./api";
 import {useContext, useEffect} from "react";
 import {UserContext} from "./store/UserContextProvider";
@@ -30,16 +30,19 @@ function App() {
                   isLogedOut: false,
                   user: json
               })
-
           })
           .catch((error) => {
               console.log(error)
               localStorage.removeItem('token')
           });
     }
+      console.log(userData)
   }
+
+
   useEffect(() => {
     isToken();
+
   }, []);
 
   return (

@@ -7,6 +7,7 @@ export const useStyles = makeStyles(() => ({
     position: "fixed",
     top: "0",
     zIndex: "1",
+    background: 'transparent'
   },
   icon: {
     display: "flex",

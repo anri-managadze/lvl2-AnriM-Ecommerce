@@ -27,7 +27,7 @@ const AppBarMenu = ({ display, textAlign }) => {
 
   useEffect(() => {
         console.log(userData);
-  },[userData]);
+  },[]);
 
 
   return (
