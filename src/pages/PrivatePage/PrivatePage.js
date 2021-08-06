@@ -3,6 +3,7 @@ import {Box, Card, CardActionArea, CardContent, CardMedia, makeStyles, Typograph
 import MainLayout from "../../layouts/MainLayout";
 import {UserContext} from "../../store/UserContextProvider";
 
+
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
@@ -16,7 +17,8 @@ const PrivatePage = () => {
     const classes = useStyles();
 
 
-  return (
+  return (<>
+      {userData.data.isLogedIn ?
     <MainLayout>
         <Box padding='70px '>
         <Card className={classes.root}>
@@ -37,7 +39,8 @@ const PrivatePage = () => {
             </CardActionArea>
         </Card>
         </Box>
-    </MainLayout>
+    </MainLayout> : ('')}
+      </>
   );
 };
 

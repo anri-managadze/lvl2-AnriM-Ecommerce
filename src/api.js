@@ -21,9 +21,6 @@ export const Api = {
             throw new Error('');
           }
         })
-        .catch((error) => {
-            console.log(error)
-        });
   },
   getProductList: function (page) {
     return Api.getData( 'products?page='+page)

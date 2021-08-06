@@ -1,8 +1,6 @@
 import "./App.css";
 import SinglePage from "./pages/SinglePage/SinglePage";
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import ListPage from "./pages/List/ListPage";
 import { ADMIN, HOME, LIST, PRIVATE, SIGN_IN, SIGN_UP, SINGLE } from "./roures";
 import Productpage from "./pages/ProductPage/Productpage";
@@ -11,18 +9,35 @@ import SignUp from "./pages/SignUp/SignUp";
 import PrivatePage from "./pages/PrivatePage/PrivatePage";
 import PrivateRoute from "./store/PrivateRoute";
 import {Api} from "./api";
-import {useEffect} from "react";
-
+import {useContext, useEffect} from "react";
+import {UserContext} from "./store/UserContextProvider";
 
 
 function App() {
+    const userData=useContext(UserContext);
   const isToken = () => {
     const token =localStorage.getItem('token');
     if (token) {
+        userData.setData ({
+            ...userData.data,
+            isLogedIn: false,
+        })
       Api.privatePage()
+          .then((json) => {
+              userData.setData({
+                  ...userData.data,
+                  isLogedIn: true,
+                  isLogedOut: false,
+                  user: json
+              })
+
+          })
+          .catch((error) => {
+              console.log(error)
+              localStorage.removeItem('token')
+          });
     }
   }
-
   useEffect(() => {
     isToken();
   }, []);
