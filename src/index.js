@@ -3,15 +3,19 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {UserContextProvider} from "./store/UserContextProvider";
+import {Provider} from "react-redux";
+import store from "./store/store";
+// import {UserContextProvider} from "./store/UserContextProvider";
 
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserContextProvider>
-        <App />
-    </UserContextProvider>
+    {/*<UserContextProvider>*/}
+      <Provider store={store}>
+            <App />
+      </Provider>
+    {/*</UserContextProvider>*/}
   </React.StrictMode>,
   document.getElementById("root")
 );
