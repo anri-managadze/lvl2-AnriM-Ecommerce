@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import { ErrorMessage,  FormikProvider, useFormik } from "formik";
 import CheckBox from "../../../component/CheckBox";
 import { Box, Button, TextField } from "@material-ui/core";
@@ -7,7 +7,9 @@ import { useStyles } from "./SignInFormStyle";
 import * as Yup from "yup";
 import { PRIVATE } from "../../../roures";
 import { Api } from "../../../api";
-import { UserContext} from "../../../store/UserContextProvider";
+import {useDispatch} from "react-redux";
+import {setLogedIn, setUser} from "../../../store/user/userActionsCreator";
+// import { UserContext} from "../../../store/UserContextProvider";
 
 
 
@@ -15,8 +17,8 @@ const SignInForm = () => {
   const classes = useStyles();
   const history = useHistory();
 
-  const userData=useContext(UserContext);
-
+  // const userData=useContext(UserContext);
+  const dispatch=useDispatch();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -31,12 +33,14 @@ const SignInForm = () => {
       Api.sighIn(formik.values.email,formik.values.password)
           .then((json) => {
             localStorage.setItem('token',json.token.access_token);
-            userData.setData({
-              ...userData.data,
-              isLogedIn: true,
-              isLogedOut: false,
-              user: json
-            })
+            // userData.setData({
+            //   ...userData.data,
+            //   isLogedIn: true,
+            //   isLogedOut: false,
+            //   user: json
+            // })
+            dispatch(setLogedIn(true))
+            dispatch(setUser(json.user))
             history.push(PRIVATE);
         })
         .catch((error) => {

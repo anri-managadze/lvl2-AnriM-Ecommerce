@@ -1,45 +1,54 @@
-import React, {useContext} from "react";
-import {Box, Card, CardActionArea, CardContent, CardMedia, makeStyles, Typography} from "@material-ui/core";
+import React from "react";
+import {Box,  CardActionArea,  makeStyles} from "@material-ui/core";
 import MainLayout from "../../layouts/MainLayout";
-import {UserContext} from "../../store/UserContextProvider";
-
+// import {UserContext} from "../../store/UserContextProvider";
+import {useSelector} from "react-redux";
+import {selectLogedIn, selectUser} from "../../store/user/userSelector";
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
+        minWidth: '90%',
+        padding: '10%',
+        display: 'flex'
     },
     media: {
-        height: 340,
+        width:320,
     },
+    image: {
+        width:220,
+        height: 220,
+        borderRadius: '50%'
+    },
+    info: {
+        margin: '20px 0 0 20px',
+        borderBottom: '2px solid #1266F1',
+        padding: '10px',
+        display: "flex"
+    }
 });
 const PrivatePage = () => {
-    const userData=useContext(UserContext);
-    const classes = useStyles();
+    // const userData=useContext(UserContext);
 
+    const classes = useStyles();
+    const user=useSelector(selectUser);
+    const isLogedIn = useSelector(selectLogedIn)
+    console.log(user)
+    console.log(isLogedIn)
 
   return (<>
-      {userData.data.isLogedIn ?
+      {isLogedIn ?
     <MainLayout>
-        <Box padding='70px '>
-        <Card className={classes.root}>
-            <CardActionArea>
-                <CardMedia
-                    className={classes.media}
-                    image={userData.data.user.avatar}
-                    title="Contemplative Reptile"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {userData.data.user.name}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {userData.data.user.email}
-                    </Typography>
-                </CardContent>
+        <Box className={classes.root}>
+            <CardActionArea className={classes.media}>
+                    <img src={user.avatar} className={classes.image} alt='surati'/>
             </CardActionArea>
-        </Card>
+            <Box>
+                <Box className={classes.info}> Name: {user.name}</Box>
+                <Box className={classes.info}> Email: {user.email}</Box>
+            </Box>
         </Box>
-    </MainLayout> : ('')}
+
+    </MainLayout> : <Box> </Box>}
       </>
   );
 };

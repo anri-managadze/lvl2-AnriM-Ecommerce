@@ -1,20 +1,20 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import {UserContext} from "../store/UserContextProvider";
+// import {UserContext} from "../store/UserContextProvider";
 import {HOME} from "../roures";
-import Loader from "./Loader";
+import {selectLogedIn} from "../store/user/userSelector";
+import {useSelector} from "react-redux";
 
 
 const PrivateRoute = ({component: Component, ...rest}) => {
-    const userData=useContext(UserContext);
+    // const userData=useContext(UserContext);
     const token =localStorage.getItem('token');
+    const isLogedIn = useSelector(selectLogedIn)
 
     return (
         <Route {...rest} render={props => (
-            userData.data.isLogedIn || token  ?
-                <Loader >
+            isLogedIn || token  ?
                     <Component {...props} />
-                </Loader>
                 :  <Redirect to={{
                     pathname: HOME,
                 state: {
