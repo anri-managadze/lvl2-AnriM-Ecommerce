@@ -6,7 +6,7 @@ import { ADMIN, HOME, LIST, PRIVATE, SIGN_IN, SIGN_UP, SINGLE } from "./roures";
 import Productpage from "./pages/ProductPage/Productpage";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
-import PrivatePage from "./pages/PrivatePage/PrivatePage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import PrivateRoute from "./component/PrivateRoute";
 import {Api} from "./api";
 import {useEffect} from "react";
@@ -59,7 +59,7 @@ function App() {
           <Route path={ADMIN} component={Productpage} />
           <Route exact path={SIGN_IN} component={SignIn} />
           <Route exact path={SIGN_UP} component={SignUp} />
-          <PrivateRoute exact path={PRIVATE} component={PrivatePage} />
+          <PrivateRoute exact path={PRIVATE} component={ProfilePage} />
           <Route path={HOME} component={ListPage} />
         </Switch>
       </Router>

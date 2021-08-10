@@ -3,35 +3,22 @@ import CustomizedBadges from "./CustomizedBadges";
 import { Box } from "@material-ui/core";
 import SplitButton from "./SplitButton";
 import Button from "@material-ui/core/Button";
-import {Link, useHistory} from "react-router-dom";
-import {ADMIN, HOME, PRIVATE, SIGN_IN, SIGN_UP} from "../../roures";
+import {Link} from "react-router-dom";
+import {ADMIN, SIGN_IN, SIGN_UP} from "../../roures";
 import { useStyles } from "./AppBarMenuStyle";
 // import {UserContext} from "../../store/UserContextProvider";
-import {useDispatch, useSelector} from "react-redux";
-import {setLogedIn, setUser} from "../../store/user/userActionsCreator";
+import {useSelector} from "react-redux";
+
 import {selectLogedIn} from "../../store/user/userSelector";
+import ProfButton from "./ProfButton";
 
 
 const AppBarMenu = ({ display, textAlign }) => {
   const classes = useStyles();
   // const userData=useContext(UserContext);
-  const history = useHistory();
+
   const isLogedIn = useSelector(selectLogedIn);
-  const dispatch=useDispatch();
-  const LogOut=()=> {
 
-      // userData.setData ({
-      //     ...userData.data,
-      //     isLogedIn: false,
-      //     isLogedOut: true,
-      //     user: null
-      // })
-
-      dispatch(setLogedIn(false))
-      dispatch(setUser(null))
-      localStorage.removeItem('token')
-      history.push(HOME)
-  }
 
   return (
           <Box display={display} textAlign={textAlign}>
@@ -43,8 +30,7 @@ const AppBarMenu = ({ display, textAlign }) => {
 
               {isLogedIn ? (
                   <>
-                      <Link to={PRIVATE}> <Box  className={classes.profile}> </Box></Link>
-                  <Box><Button color="inherit" onClick={LogOut} className={classes.btnall}><Link className={classes.link} to={''}>LogOut</Link></Button></Box>
+                     <ProfButton />
                   </>
                   ) :
                   (<>

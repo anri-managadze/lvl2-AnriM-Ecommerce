@@ -26,7 +26,7 @@ const useStyles = makeStyles({
         display: "flex"
     }
 });
-const PrivatePage = () => {
+const ProfilePage = () => {
     // const userData=useContext(UserContext);
 
     const classes = useStyles();
@@ -36,7 +36,7 @@ const PrivatePage = () => {
     console.log(isLogedIn)
 
   return (<>
-      {isLogedIn ?
+      {isLogedIn &&
     <MainLayout>
         <Box className={classes.root}>
             <CardActionArea className={classes.media}>
@@ -48,9 +48,9 @@ const PrivatePage = () => {
             </Box>
         </Box>
 
-    </MainLayout> : <Box> </Box>}
+    </MainLayout> }
       </>
   );
 };
 
-export default PrivatePage;
+export default ProfilePage;
