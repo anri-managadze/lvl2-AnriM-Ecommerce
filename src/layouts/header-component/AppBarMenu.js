@@ -6,35 +6,28 @@ import Button from "@material-ui/core/Button";
 import {Link, useHistory} from "react-router-dom";
 import {ADMIN, HOME, PRIVATE, SIGN_IN, SIGN_UP} from "../../roures";
 import { useStyles } from "./AppBarMenuStyle";
-import {setUser} from "../../store/user/userActionsCreator";
-import {useDispatch} from "react-redux";
-// import {UserContext} from "../../store/UserContextProvider";
+import {UserContext} from "../../store/UserContextProvider";
 
 
 const AppBarMenu = ({ display, textAlign }) => {
   const classes = useStyles();
-  // const userData=useContext(UserContext);
+  const userData=useContext(UserContext);
   const history = useHistory();
-    let dispatch=useDispatch();
+
   const LogOut=()=> {
-      // userData.setData ({
-      //     ...userData.data,
-      //     isLogedIn: false,
-      //     isLogedOut: true,
-      //     user: null
-      // })
-      dispatch(setUser( {
-          isLogedIn: true,
-          isLogedOut: false,
-          user: null}))
+      userData.setData ({
+          ...userData.data,
+          isLogedIn: false,
+          isLogedOut: true,
+          user: null
+      })
       localStorage.removeItem('token')
       history.push(HOME)
-
   }
 
   useEffect(() => {
-         console.log(setUser.isLogedIn);
-  },[]);
+        console.log(userData);
+  },[userData]);
 
 
   return (
@@ -45,7 +38,7 @@ const AppBarMenu = ({ display, textAlign }) => {
               <Box><Button color="inherit" className={classes.btnall}><Link className={classes.link} to='#'>Shop</Link></Button></Box>
               <Box><Button color="inherit" className={classes.btnall}><Link className={classes.link} to='#'>Contact</Link></Button></Box>
 
-              {setUser.isLogedIn ? (
+              {userData.data.isLogedIn ? (
                   <>
                       <Link to={PRIVATE}> <Box  className={classes.profile}> </Box></Link>
                   <Box><Button color="inherit" onClick={LogOut} className={classes.btnall}><Link className={classes.link} to={''}>LogOut</Link></Button></Box>
@@ -55,7 +48,7 @@ const AppBarMenu = ({ display, textAlign }) => {
                     <Box><Button color="inherit" className={classes.btnall}><Link className={classes.link} to={SIGN_IN}>Sign in</Link></Button></Box>
                     <Box><Button color="inherit" className={classes.btnsignup}><Link className={classes.link} to={SIGN_UP}>Sign up</Link></Button></Box>
                   </>
-                  )}
+              )}
               </Box>
   );
 

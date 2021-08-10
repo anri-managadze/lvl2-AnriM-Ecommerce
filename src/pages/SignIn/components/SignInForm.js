@@ -7,9 +7,7 @@ import { useStyles } from "./SignInFormStyle";
 import * as Yup from "yup";
 import { PRIVATE } from "../../../roures";
 import { Api } from "../../../api";
-// import { UserContext} from "../../../store/UserContextProvider";
-import {setUser} from "../../../store/user/userActionsCreator";
-import {useDispatch} from "react-redux";
+import { UserContext} from "../../../store/UserContextProvider";
 
 
 
@@ -17,8 +15,8 @@ const SignInForm = () => {
   const classes = useStyles();
   const history = useHistory();
 
-  // const userData=useContext(UserContext);
-  let dispatch=useDispatch();
+  const userData=useContext(UserContext);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -33,21 +31,13 @@ const SignInForm = () => {
       Api.sighIn(formik.values.email,formik.values.password)
           .then((json) => {
             localStorage.setItem('token',json.token.access_token);
-
-            dispatch(setUser( {
+            userData.setData({
+              ...userData.data,
               isLogedIn: true,
               isLogedOut: false,
-              user: json}))
-
-            // userData.setData({
-            //   ...userData.data,
-            //   isLogedIn: true,
-            //   isLogedOut: false,
-            //   user: json.user
-            // })
-
+              user: json
+            })
             history.push(PRIVATE);
-            console.log(json)
         })
         .catch((error) => {
           console.log(error, "error")

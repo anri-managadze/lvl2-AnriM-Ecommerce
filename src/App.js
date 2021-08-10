@@ -9,36 +9,39 @@ import SignUp from "./pages/SignUp/SignUp";
 import PrivatePage from "./pages/PrivatePage/PrivatePage";
 import PrivateRoute from "./component/PrivateRoute";
 import {Api} from "./api";
-import { useEffect} from "react";
-
-import {setToken, setUser} from "./store/user/userActionsCreator";
-import {useDispatch} from "react-redux";
-
+import {useContext, useEffect} from "react";
+import {UserContext} from "./store/UserContextProvider";
 
 
 function App() {
-    // const userData=useContext(UserContext);
+    const userData=useContext(UserContext);
   const isToken = () => {
     const token =localStorage.getItem('token');
     if (token) {
-
+        userData.setData ({
+            ...userData.data,
+            isLogedIn: false,
+        })
       Api.privatePage()
           .then((json) => {
-              dispatch(setUser( {
+              userData.setData({
+                  ...userData.data,
                   isLogedIn: true,
                   isLogedOut: false,
-                  user: json}))
+                  user: json
+              })
           })
           .catch((error) => {
               console.log(error)
               localStorage.removeItem('token')
           });
     }
+      console.log(userData)
   }
 
-let dispatch=useDispatch();
+
   useEffect(() => {
-      isToken();
+    isToken();
 
   }, []);
 
