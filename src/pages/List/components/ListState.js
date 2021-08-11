@@ -17,19 +17,26 @@ import { Api } from "../../../api";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import { Pagination } from "@material-ui/lab";
+import {useDispatch, useSelector} from "react-redux";
+import {setProducts} from "../../../store/products/productsActionCreator";
+import {selectProducts} from "../../../store/products/productsSelector";
 
 const ListState = () => {
   const classes = useStyles();
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page,setPage]=useState(1 );
-
+  const dispatch=useDispatch();
+  const data= useSelector(selectProducts);
 
     useEffect( () => {
         setLoading(true);
         Api.getProductList(page)
             .then((data) => {
-                setData(data)
+
+                // setData(data)
+                dispatch(setProducts(data))
+
             })
             .catch((err) => console.log(err))
             .finally(() => setLoading(false));
