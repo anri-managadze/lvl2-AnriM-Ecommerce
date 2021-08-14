@@ -41,6 +41,7 @@ const ListState = () => {
             .catch((err) => console.log(err))
             .finally(() => setLoading(false));
     },[page]);
+
     const onChange = (e,p) => {
       setPage(p)
     }

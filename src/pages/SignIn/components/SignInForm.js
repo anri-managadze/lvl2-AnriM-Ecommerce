@@ -39,8 +39,9 @@ const SignInForm = () => {
             //   isLogedOut: false,
             //   user: json
             // })
-            dispatch(setLogedIn(true))
+
             dispatch(setUser(json.user))
+            dispatch(setLogedIn(true))
             history.push(PRIVATE);
         })
         .catch((error) => {

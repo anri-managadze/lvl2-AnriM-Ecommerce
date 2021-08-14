@@ -43,6 +43,8 @@ export const Api = {
     },
     privatePage: function () {
         return Api.getData('auth/me',{},'post')
+    },
+    update: function (id,avatar) {
+      return Api.getData(`users/${id}/update`, {avatar},'post')
     }
-
 };

@@ -1,12 +1,14 @@
 import React from "react";
 import { ErrorMessage, FormikProvider, useFormik } from "formik";
-import { Box, Button, TextField } from "@material-ui/core";
+import {Box, Button, TextField} from "@material-ui/core";
 import CheckBox from "../../../component/CheckBox";
 import { useStyles } from "./SignUpFormStyle";
 import { useHistory } from "react-router-dom";
 import { SIGN_IN } from "../../../roures";
 import * as Yup from "yup";
 import {Api} from "../../../api";
+
+
 
 const SignUpForm = () => {
   const classes = useStyles();
@@ -29,7 +31,7 @@ const SignUpForm = () => {
     }),
     onSubmit: (values) => {
       console.log(values)
-      Api.sighUp(formik.values.name,formik.values.email,formik.values.password,formik.values.password_confirmation)
+      Api.sighUp(formik.values.name,formik.values.email,formik.values.password,formik.values.password_confirmation,formik.values.avatar)
         .then((json) => {
           console.log(json);
           history.push(SIGN_IN);
@@ -84,7 +86,6 @@ const SignUpForm = () => {
             <Box fontSize="14px" color="#6C757D">
               <label>At least 8 characters and 1 digit</label>
             </Box>
-
             <TextField
               type="password"
               name="password_confirmation"

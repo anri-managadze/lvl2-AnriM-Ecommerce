@@ -13,6 +13,13 @@ export const setLogedIn=(isLogedIn)=> {
         payload: isLogedIn
     }
 }
+export const setLoading=(isLoading)=> {
+    return {
+        type: SET_LOGEDIN,
+        payload: isLoading
+    }
+}
+
 
 export const setToken=(token)=> {
     return {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import { useStyles } from "./AddProductFormStyle";
-import { FilledInput } from "@material-ui/core";
+import {FilledInput, TextField} from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 
 const AddProductForm = () => {
@@ -52,35 +52,35 @@ const AddProductForm = () => {
             accept="image/x-png"
             onBlur
           />
-          <label htmlFor="title" className={classes.label}>
-            Title
-          </label>
-          <input
+          <TextField
             id="title"
             name="title"
             type="text"
+            variant="outlined"
+            label="Title"
+            size="small"
             onChange={formik.handleChange}
             value={formik.values.title}
             className={classes.input}
           />
-          <label htmlFor="price" className={classes.label}>
-            Price
-          </label>
-          <input
+          <TextField
             id="price"
             name="price"
             type="number"
+            variant="outlined"
+            label="Price"
+            size="small"
             onChange={formik.handleChange}
             value={formik.values.price}
             className={classes.input}
           />
-          <label htmlFor="Category" className={classes.label}>
-            Category
-          </label>
-          <input
+          <TextField
             id="category"
             name="category"
             type="text"
+            variant="outlined"
+            label=" Category"
+            size="small"
             onChange={formik.handleChange}
             value={formik.values.categori}
             className={classes.input}

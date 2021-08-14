@@ -6,11 +6,13 @@ import {selectLogedIn} from "../store/user/userSelector";
 import {useSelector} from "react-redux";
 
 
+
 const PrivateRoute = ({component: Component, ...rest}) => {
     // const userData=useContext(UserContext);
     const token =localStorage.getItem('token');
     const isLogedIn = useSelector(selectLogedIn)
 
+    console.log(isLogedIn)
     return (
         <Route {...rest} render={props => (
             isLogedIn || token  ?
@@ -26,3 +28,4 @@ const PrivateRoute = ({component: Component, ...rest}) => {
 };
 
 export default PrivateRoute;
+

@@ -7,10 +7,12 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setLogedIn, setUser} from "../../store/user/userActionsCreator";
 import {HOME, PRIVATE} from "../../roures";
 import {Link, useHistory} from "react-router-dom";
+import {selectUser} from "../../store/user/userSelector";
+import {Box} from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +38,9 @@ export default function ProfButton() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const history = useHistory();
+    const user=useSelector(selectUser);
+
+console.log(user)
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -85,7 +90,7 @@ export default function ProfButton() {
                     onClick={handleToggle}
                     className={classes.link}
                 >
-                   Welcome
+                    <img src={user.avatar} alt='surati' className={classes.image}/>
                 </Button>
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                     {({ TransitionProps, placement }) => (
@@ -96,6 +101,7 @@ export default function ProfButton() {
                             <Paper>
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                                        <Box textAlign='center' paddingBottom='10px' fontWeight='bold'>{user.name}</Box>
                                         <MenuItem onClick={handleClose}><Link to={PRIVATE} className={classes.link}>My account</Link></MenuItem>
                                         <MenuItem onClick={LogOut} className={classes.link}>Logout</MenuItem>
                                     </MenuList>

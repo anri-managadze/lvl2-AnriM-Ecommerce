@@ -30,9 +30,10 @@ export default function FormDialog() {
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
+
       >
         <DialogTitle id="form-dialog-title">Add Your Product</DialogTitle>
-        <DialogContent>
+        <DialogContent >
           <AddProductForm />
         </DialogContent>
       </Dialog>

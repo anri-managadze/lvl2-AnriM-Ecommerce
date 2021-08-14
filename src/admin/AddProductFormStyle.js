@@ -6,11 +6,6 @@ export const useStyles = makeStyles(() => ({
     flexDirection: "column",
   },
   input: {
-    minWidth: "500px",
-    height: "25px",
-    marginTop: "10px",
-  },
-  label: {
     marginTop: "15px",
   },
   btn: {

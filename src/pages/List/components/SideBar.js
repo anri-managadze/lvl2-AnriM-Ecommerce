@@ -170,16 +170,16 @@ const SideBar = () => {
         Color
       </Box>
       <Box display="flex" flexWrap="wrap" ml="-15px">
-        <Circle bgcolor="#FFFFFF" />
-        <Circle bgcolor="#9E9E9E" />
-        <Circle bgcolor="#000000" />
-        <Circle bgcolor="#4CAF50" />
-        <Circle bgcolor="#2196F3" />
-        <Circle bgcolor="#9C27B0" />
-        <Circle bgcolor="#FFEB3B" />
-        <Circle bgcolor="#3F51B5" />
-        <Circle bgcolor="#F44336" />
-        <Circle bgcolor="#FF9800" />
+        <Circle bgcolor="#FFFFFF" border='1px solid black'/>
+        <Circle bgcolor="#9E9E9E" border='1px solid black'/>
+        <Circle bgcolor="#000000" border='1px solid black'/>
+        <Circle bgcolor="#4CAF50" border='1px solid black'/>
+        <Circle bgcolor="#2196F3" border='1px solid black'/>
+        <Circle bgcolor="#9C27B0" border='1px solid black'/>
+        <Circle bgcolor="#FFEB3B" border='1px solid black'/>
+        <Circle bgcolor="#3F51B5" border='1px solid black'/>
+        <Circle bgcolor="#F44336" border='1px solid black'/>
+        <Circle bgcolor="#FF9800" border='1px solid black'/>
       </Box>
     </>
   );
