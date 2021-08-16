@@ -40,7 +40,6 @@ export default function ProfButton() {
     const history = useHistory();
     const user=useSelector(selectUser);
 
-console.log(user)
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);

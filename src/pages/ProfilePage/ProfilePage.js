@@ -1,10 +1,9 @@
 import React from "react";
-import {Box, CardActionArea, Container, Grid, Input} from "@material-ui/core";
+import {Box, Button, CardActionArea, Container, Grid, TextField} from "@material-ui/core";
 import MainLayout from "../../layouts/MainLayout";
 // import {UserContext} from "../../store/UserContextProvider";
 import {useDispatch, useSelector} from "react-redux";
 import {selectLogedIn, selectUser} from "../../store/user/userSelector";
-import {useParams} from "react-router-dom";
 import {setUser} from "../../store/user/userActionsCreator";
 import {useFormik} from "formik";
 import {Api} from "../../api";
@@ -15,11 +14,10 @@ const ProfilePage = () => {
     // const userData=useContext(UserContext);
     const classes = useStyles();
     const isLogedIn = useSelector(selectLogedIn)
-    const { id } = useParams();
     let dispatch = useDispatch();
     const user = useSelector(selectUser);
 
-    console.log(user);
+
 
     const addPhoto = (e) => {
         if (e.target.files.length  && e.target.files[0]) {
@@ -32,17 +30,17 @@ const ProfilePage = () => {
             avatar: ''
         },
         onSubmit: (values) => {
-            Api.update(id, formik.values.avatar)
+            Api.update(user.id, {avatar: values.avatar},)
                 .then((data) => {
-                    console.log(data);
                     dispatch(setUser(data));
+                    console.log(data)
                 })
                 .catch((error) => {
                     console.log(error);
                 })
-
         },
     });
+
 
   return (<>
       {isLogedIn &&
@@ -54,14 +52,15 @@ const ProfilePage = () => {
                          <img src={user.avatar} className={classes.image} alt='surati'/>
                  </CardActionArea>
                 <form onSubmit={formik.handleSubmit}>
-                    <Input
+                    <TextField
                         type="file"
                         name="avatar"
                         id="avatar"
                         accept="image/*"
                         onChange={(e)=>addPhoto(e)}
-                        value={formik.values.avatar}
+
                     />
+                    <Button type='submit'>Submit</Button>
                 </form>
             </Grid>
             <Grid item sm={8}>

@@ -6,7 +6,6 @@ import {selectLogedIn} from "../store/user/userSelector";
 import {useSelector} from "react-redux";
 
 
-
 const PrivateRoute = ({component: Component, ...rest}) => {
     // const userData=useContext(UserContext);
     const token =localStorage.getItem('token');

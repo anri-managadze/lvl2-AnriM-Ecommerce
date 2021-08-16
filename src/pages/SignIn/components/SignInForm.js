@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { PRIVATE } from "../../../roures";
 import { Api } from "../../../api";
 import {useDispatch} from "react-redux";
-import {setLogedIn, setUser} from "../../../store/user/userActionsCreator";
+import {setLoading, setLogedIn, setUser} from "../../../store/user/userActionsCreator";
 // import { UserContext} from "../../../store/UserContextProvider";
 
 
@@ -30,9 +30,10 @@ const SignInForm = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
+      dispatch(setLoading(true))
       Api.sighIn(formik.values.email,formik.values.password)
           .then((json) => {
-            localStorage.setItem('token',json.token.access_token);
+
             // userData.setData({
             //   ...userData.data,
             //   isLogedIn: true,
@@ -42,12 +43,14 @@ const SignInForm = () => {
 
             dispatch(setUser(json.user))
             dispatch(setLogedIn(true))
+            localStorage.setItem('token',json.token.access_token);
             history.push(PRIVATE);
         })
         .catch((error) => {
           console.log(error, "error")
         }
-      );
+      )
+          .finally(()=>setLoading(false));
     },
   });
 

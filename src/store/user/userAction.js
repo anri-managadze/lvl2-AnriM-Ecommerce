@@ -1,5 +1,5 @@
 import {Api} from "../../api";
-import {setLogedIn, setUser} from "./userActionsCreator";
+import {setLoading, setLogedIn, setUser} from "./userActionsCreator";
 
 
 // export const SignInAction=(email,password)=>{
@@ -21,6 +21,7 @@ import {setLogedIn, setUser} from "./userActionsCreator";
 export const isToken = (dispatch) => {
     const token =localStorage.getItem('token');
     if (token) {
+        dispatch(setLoading(true))
         Api.privatePage()
             .then((json) => {
                 dispatch(setUser(json))
@@ -29,6 +30,7 @@ export const isToken = (dispatch) => {
             .catch((error) => {
                 console.log(error)
                 localStorage.removeItem('token')
-            });
+            })
+            .finally(()=>setLoading(false));
     }
 }
