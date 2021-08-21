@@ -1,49 +1,34 @@
 import React from "react";
-import {Box, Button, CardActionArea, Container, Grid, TextField} from "@material-ui/core";
+import {Box, Button, CardActionArea, Container, Grid,  TextField} from "@material-ui/core";
 import MainLayout from "../../layouts/MainLayout";
 // import {UserContext} from "../../store/UserContextProvider";
 import {useDispatch, useSelector} from "react-redux";
-import {selectLogedIn, selectUser} from "../../store/user/userSelector";
+import {selectUser} from "../../store/user/userSelector";
 import {setUser} from "../../store/user/userActionsCreator";
 import {useFormik} from "formik";
 import {Api} from "../../api";
 import {useStyles} from "./ProfilePageStyle";
+import {updateUserProfile} from "../../store/user/userAction";
 
 
 const ProfilePage = () => {
     // const userData=useContext(UserContext);
     const classes = useStyles();
-    const isLogedIn = useSelector(selectLogedIn)
     let dispatch = useDispatch();
     const user = useSelector(selectUser);
 
-
-
-    const addPhoto = (e) => {
-        if (e.target.files.length  && e.target.files[0]) {
-            dispatch(setUser({...user, avatar: URL.createObjectURL(e.target.files[0])}));
-        }
-    };
 
     const formik = useFormik({
         initialValues: {
             avatar: ''
         },
         onSubmit: (values) => {
-            Api.update(user.id, {avatar: values.avatar},)
-                .then((data) => {
-                    dispatch(setUser(data));
-                    console.log(data)
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-        },
+            dispatch(updateUserProfile(user.id, values));
+        }
     });
 
-
-  return (<>
-      {isLogedIn &&
+  return (
+      <>
     <MainLayout>
         <Container>
         <Grid container className={classes.root}>
@@ -56,9 +41,9 @@ const ProfilePage = () => {
                         type="file"
                         name="avatar"
                         id="avatar"
-                        accept="image/*"
-                        onChange={(e)=>addPhoto(e)}
-
+                        onChange={(e) =>
+                            formik.setFieldValue("avatar", (e.target.files[0]))
+                        }
                     />
                     <Button type='submit'>Submit</Button>
                 </form>
@@ -69,7 +54,7 @@ const ProfilePage = () => {
             </Grid>
         </Grid>
         </Container>
-    </MainLayout> }
+    </MainLayout>
       </>
   );
 };

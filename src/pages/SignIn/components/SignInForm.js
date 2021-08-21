@@ -9,8 +9,6 @@ import { PRIVATE } from "../../../roures";
 import { Api } from "../../../api";
 import {useDispatch} from "react-redux";
 import {setLoading, setLogedIn, setUser} from "../../../store/user/userActionsCreator";
-// import { UserContext} from "../../../store/UserContextProvider";
-
 
 
 const SignInForm = () => {
@@ -33,14 +31,6 @@ const SignInForm = () => {
       dispatch(setLoading(true))
       Api.sighIn(formik.values.email,formik.values.password)
           .then((json) => {
-
-            // userData.setData({
-            //   ...userData.data,
-            //   isLogedIn: true,
-            //   isLogedOut: false,
-            //   user: json
-            // })
-
             dispatch(setUser(json.user))
             dispatch(setLogedIn(true))
             localStorage.setItem('token',json.token.access_token);

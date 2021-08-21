@@ -34,3 +34,11 @@ export const isToken = (dispatch) => {
             .finally(()=>setLoading(false));
     }
 }
+
+export const updateUserProfile =
+    (currentUserId, values) => (dispatch) => {
+        Api.update(currentUserId, values)
+            .then((data) =>
+            dispatch(setUser(data))
+        );
+    };
