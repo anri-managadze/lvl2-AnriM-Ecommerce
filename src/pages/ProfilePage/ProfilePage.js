@@ -4,10 +4,10 @@ import MainLayout from "../../layouts/MainLayout";
 // import {UserContext} from "../../store/UserContextProvider";
 import {useDispatch, useSelector} from "react-redux";
 import {selectUser} from "../../store/user/userSelector";
-import {setUser} from "../../store/user/userActionsCreator";
 import {useFormik} from "formik";
-import {Api} from "../../api";
 import {useStyles} from "./ProfilePageStyle";
+import {Api} from "../../api";
+import {setUser} from "../../store/user/userActionsCreator";
 import {updateUserProfile} from "../../store/user/userAction";
 
 
@@ -20,10 +20,11 @@ const ProfilePage = () => {
 
     const formik = useFormik({
         initialValues: {
+            name: user&& user.name,
             avatar: ''
         },
         onSubmit: (values) => {
-            dispatch(updateUserProfile(user.id, values));
+            dispatch(updateUserProfile(user.id,values.name,values.avatar))
         }
     });
 
@@ -37,6 +38,12 @@ const ProfilePage = () => {
                          <img src={user.avatar} className={classes.image} alt='surati'/>
                  </CardActionArea>
                 <form onSubmit={formik.handleSubmit}>
+                    <TextField
+                        type="text"
+                        name="name"
+                        id="name"
+                        onChange={formik.handleChange}
+                    />
                     <TextField
                         type="file"
                         name="avatar"

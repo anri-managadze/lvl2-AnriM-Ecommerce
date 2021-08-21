@@ -26,6 +26,7 @@ export const isToken = (dispatch) => {
             .then((json) => {
                 dispatch(setUser(json))
                 dispatch(setLogedIn(true))
+                return json
             })
             .catch((error) => {
                 console.log(error)
@@ -36,9 +37,11 @@ export const isToken = (dispatch) => {
 }
 
 export const updateUserProfile =
-    (currentUserId, values) => (dispatch) => {
-        Api.update(currentUserId, values)
-            .then((data) =>
-            dispatch(setUser(data))
+    (id, name,avatar) => (dispatch) => {
+        Api.update(id, name,avatar)
+            .then((data) => {
+                dispatch(setUser(data))
+                console.log(data)
+            }
         );
     };

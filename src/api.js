@@ -4,10 +4,10 @@ import { serialize } from "object-to-formdata";
 
 export const Api = {
   baseUrl: "http://159.65.126.180/api/",
-  getData: function (url, params, method = "get",isFormData) {
+  getData: function (url, params, method = "get",isFile) {
       let headers = {};
 
-      if (!isFormData) {
+      if (!isFile) {
           headers = {
               "Content-Type": "application/json",
               Accept: "application/json",
@@ -22,7 +22,7 @@ export const Api = {
     return fetch(this.baseUrl + url, {
       method: method.toUpperCase(),
       headers,
-      body: isFormData ? serialize(params) : JSON.stringify(params),
+      body: isFile ? serialize(params) : JSON.stringify(params),
     })
         .then((res) => {
           if (res.ok) {
@@ -55,7 +55,7 @@ export const Api = {
         return Api.getData('auth/me',{},'post')
     },
 
-    update: function (id,newUser) {
-      return Api.getData(`users/${id}/update`, {newUser},'post',true)
+    update: function (id,name,avatar) {
+      return Api.getData(`users/${id}/update`, {name,avatar},'post',true)
     }
 };
