@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  Box,
+  Box, Button,
   Card,
   CardActionArea,
   CardContent,
@@ -9,7 +9,7 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import { SINGLE } from "../../../roures";
+import {CART, SINGLE} from "../../../roures";
 import { Link } from "react-router-dom";
 import Loader from "../../../component/Loader";
 import { useStyles } from "./ListStateStyle";
@@ -19,7 +19,8 @@ import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import { Pagination } from "@material-ui/lab";
 import {useDispatch, useSelector} from "react-redux";
 import {setProducts} from "../../../store/products/productsActionCreator";
-import {selectProducts} from "../../../store/products/productsSelector";
+import {selectCart, selectProducts} from "../../../store/products/productsSelector";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const ListState = () => {
   const classes = useStyles();
@@ -28,6 +29,7 @@ const ListState = () => {
   const [page,setPage]=useState(1 );
   const dispatch=useDispatch();
   const data= useSelector(selectProducts);
+
 
     useEffect( () => {
         setLoading(true);
@@ -45,6 +47,8 @@ const ListState = () => {
     const onChange = (e,p) => {
       setPage(p)
     }
+
+
 
   return (
     <Container>
@@ -103,6 +107,12 @@ const ListState = () => {
                         </CardContent>
                       </CardActionArea>
                     </Card>
+                  </Link>
+                  <Link to={CART.replace(":id", el.id)} >
+                    <Button variant="contained" className={classes.contained} >
+                      <ShoppingCartIcon className={classes.icon} />
+                      Add to Cart
+                    </Button>
                   </Link>
                 </Grid>
               );

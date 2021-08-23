@@ -1,32 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Container, Grid } from "@material-ui/core";
 import FullWidthTab from "./FullWidthTab";
 import { Rating } from "@material-ui/lab";
 import Quantity from "./ Quantity";
 import RadioButSingle from "./RadioButSingle";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Loader from "../../../component/Loader";
 import { Api } from "../../../api";
 import { useStyles } from "./SingleStateStyle";
+import {useDispatch, useSelector} from "react-redux";
+import {selectSingle} from "../../../store/products/productsSelector";
+import {setSingle} from "../../../store/products/productsActionCreator";
+import {setLoading} from "../../../store/user/userActionsCreator";
+import {selectLoading} from "../../../store/user/userSelector";
 
 const SingleState = () => {
   const classes = useStyles();
-  const [data, setData] = useState({});
   const { id } = useParams();
-  const [loading, setLoading] = useState(false);
+  const dispatch=useDispatch();
+  const data= useSelector(selectSingle);
+  const loading=useSelector(selectLoading)
+
 
   useEffect(() => {
-    setLoading(true);
+    dispatch(setLoading(true))
     Api.getSingleProduct(id)
       .then((json) => {
-        setData(json);
+        dispatch(setSingle(json));
         console.log(json);
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => setLoading(false));
+        .finally(()=>dispatch(setLoading(false)));
   }, [id]);
 
   return (

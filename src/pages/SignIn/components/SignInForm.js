@@ -6,9 +6,8 @@ import {Link, useHistory} from "react-router-dom";
 import { useStyles } from "./SignInFormStyle";
 import * as Yup from "yup";
 import { PRIVATE } from "../../../roures";
-import { Api } from "../../../api";
 import {useDispatch} from "react-redux";
-import {setLoading, setLogedIn, setUser} from "../../../store/user/userActionsCreator";
+import {setLoading} from "../../../store/user/userActionsCreator";
 import {SignInAction} from "../../../store/user/userAction";
 
 

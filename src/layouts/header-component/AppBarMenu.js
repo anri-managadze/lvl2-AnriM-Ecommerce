@@ -4,7 +4,7 @@ import { Box } from "@material-ui/core";
 import SplitButton from "./SplitButton";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
-import {ADMIN, SIGN_IN, SIGN_UP} from "../../roures";
+import {ADMIN, CART, SIGN_IN, SIGN_UP} from "../../roures";
 import { useStyles } from "./AppBarMenuStyle";
 // import {UserContext} from "../../store/UserContextProvider";
 import {useSelector} from "react-redux";
@@ -22,7 +22,7 @@ const AppBarMenu = ({ display, textAlign }) => {
 
   return (
           <Box display={display} textAlign={textAlign}>
-              <Box marginTop="-6px"><CustomizedBadges /></Box>
+              <Box marginTop="-6px"><Link to={CART}><CustomizedBadges /></Link></Box>
               <Box><SplitButton /></Box>
               <Box><Button color="inherit" className={classes.btnall}><Link className={classes.link} to={ADMIN}>Admin</Link></Button></Box>
               <Box><Button color="inherit" className={classes.btnall}><Link className={classes.link} to='#'>Shop</Link></Button></Box>

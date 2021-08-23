@@ -2,7 +2,7 @@ import "./App.css";
 import SinglePage from "./pages/SinglePage/SinglePage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ListPage from "./pages/List/ListPage";
-import { ADMIN, HOME, LIST, PRIVATE, SIGN_IN, SIGN_UP, SINGLE } from "./roures";
+import {ADMIN, CART, HOME, LIST, PRIVATE, SIGN_IN, SIGN_UP, SINGLE} from "./roures";
 import Productpage from "./pages/ProductPage/Productpage";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
@@ -13,6 +13,7 @@ import {useEffect} from "react";
 
 import {useDispatch} from "react-redux";
 import {isToken} from "./store/user/userAction";
+import CartPage from "./pages/CartPage";
 
 function App() {
     let dispatch = useDispatch();
@@ -31,7 +32,9 @@ function App() {
           <Route exact path={SIGN_IN} component={SignIn} />
           <Route exact path={SIGN_UP} component={SignUp} />
           <PrivateRoute exact path={PRIVATE} component={ProfilePage} />
+          <Route path={CART} component={CartPage} />
           <Route path={HOME} component={ListPage} />
+
         </Switch>
       </Router>
     </div>
