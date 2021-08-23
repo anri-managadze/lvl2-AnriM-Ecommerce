@@ -3,11 +3,9 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import AddProductForm from "./AddProductForm";
-import { useStyles } from "./FormDialogStyle";
+import {Box} from "@material-ui/core";
 
-export default function FormDialog() {
-  const classes = useStyles();
+export default function Modal({children,title,btntitle,margin}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -22,9 +20,10 @@ export default function FormDialog() {
       <Button
         variant="contained"
         onClick={handleClickOpen}
-        className={classes.mainbtn}
+        component={Box}
+        margin={margin}
       >
-        Add Product
+          {btntitle}
       </Button>
       <Dialog
         open={open}
@@ -32,9 +31,9 @@ export default function FormDialog() {
         aria-labelledby="form-dialog-title"
 
       >
-        <DialogTitle id="form-dialog-title">Add Your Product</DialogTitle>
+        <DialogTitle id="form-dialog-title">{title}</DialogTitle>
         <DialogContent >
-          <AddProductForm />
+            {children}
         </DialogContent>
       </Dialog>
     </div>

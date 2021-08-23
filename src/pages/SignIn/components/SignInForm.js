@@ -1,5 +1,5 @@
 import React from "react";
-import { ErrorMessage,  FormikProvider, useFormik } from "formik";
+import {ErrorMessage, Field, FormikProvider, useFormik} from "formik";
 import CheckBox from "../../../component/CheckBox";
 import { Box, Button, TextField } from "@material-ui/core";
 import {Link, useHistory} from "react-router-dom";
@@ -9,6 +9,7 @@ import { PRIVATE } from "../../../roures";
 import { Api } from "../../../api";
 import {useDispatch} from "react-redux";
 import {setLoading, setLogedIn, setUser} from "../../../store/user/userActionsCreator";
+import {SignInAction} from "../../../store/user/userAction";
 
 
 const SignInForm = () => {
@@ -28,53 +29,26 @@ const SignInForm = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
-      dispatch(setLoading(true))
-      Api.sighIn(formik.values.email,formik.values.password)
-          .then((json) => {
-            dispatch(setUser(json.user))
-            dispatch(setLogedIn(true))
-            localStorage.setItem('token',json.token.access_token);
-            history.push(PRIVATE);
-        })
-        .catch((error) => {
-          console.log(error, "error")
-        }
-      )
-          .finally(()=>setLoading(false));
+     dispatch(SignInAction(values.email,values.password))
+         .then(()=>{history.push(PRIVATE)})
+         .catch((error) => {
+               console.log(error, "error")
+             }
+         )
+         .finally(()=>dispatch(setLoading(false)));
     },
   });
 
   return (
-
     <FormikProvider value={formik}>
       <form onSubmit={formik.handleSubmit}>
-        <FormikProvider value={formik}>
           <Box className={classes.field}>
-            <TextField
-              type="email"
-              name="email"
-              variant="outlined"
-              label="Your Email"
-              size="small"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-              className={classes.field1}
-            />
+            <Field as={TextField} type="email" name="email" variant="outlined" label="Your Email" size="small" className={classes.field1} />
             <ErrorMessage name="email" />
 
-            <TextField
-              type="password"
-              name="password"
-              variant="outlined"
-              label="Your Password"
-              size="small"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-              className={classes.field2}
-            />
+            <Field as={TextField} type="password" name="password" variant="outlined" label="Your Password" size="small" className={classes.field2}/>
             <ErrorMessage name="password" />
           </Box>
-        </FormikProvider>
         <Box display="flex" justifyContent="space-between" marginTop="15px">
           <CheckBox label="REMEMBER ME" value="remember" />
           <Link to="#" className={classes.link}>

@@ -2,24 +2,35 @@ import {makeStyles} from "@material-ui/core";
 
 export const useStyles = makeStyles({
     root: {
-        margin: '120px auto',
+        marginTop: '120px',
         display: 'flex',
         justifyContent: 'center'
     },
     media: {
-        width:320,
+        maxWidth:220,
         textAlign: "center"
     },
     image: {
-        width:220,
+        maxWidth:220,
         height: 220,
         borderRadius: '50%',
     },
     info: {
-        width: '40%',
         margin: '20px 0 0 20px',
         borderBottom: '2px solid #1266F1',
         padding: '10px',
         display: "flex"
+    },
+    chemail: {
+        marginTop: '35px'
+    },
+    subBtn : {
+        backgroundColor: '#1266F1',
+        color: 'white',
+        margin: '35px 0',
+        "&:hover": {
+            background: "#194998"
+        },
     }
+
 });
