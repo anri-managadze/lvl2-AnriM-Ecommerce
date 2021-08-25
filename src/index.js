@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {Provider} from "react-redux";
 import store from "./store/store";
+
 // import {UserContextProvider} from "./store/UserContextProvider";
 
 
@@ -12,9 +13,11 @@ import store from "./store/store";
 ReactDOM.render(
   <React.StrictMode>
       <Provider store={store}>
+
     {/*<UserContextProvider>*/}
         <App />
     {/*</UserContextProvider>*/}
+
       </Provider>
   </React.StrictMode>,
   document.getElementById("root")

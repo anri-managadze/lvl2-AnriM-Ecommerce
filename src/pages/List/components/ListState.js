@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  Box, Button,
+  Box,
   Card,
   CardActionArea,
   CardContent,
@@ -9,7 +9,7 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import {CART, SINGLE} from "../../../roures";
+import {SINGLE} from "../../../roures";
 import { Link } from "react-router-dom";
 import Loader from "../../../component/Loader";
 import { useStyles } from "./ListStateStyle";
@@ -19,8 +19,8 @@ import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import { Pagination } from "@material-ui/lab";
 import {useDispatch, useSelector} from "react-redux";
 import {setProducts} from "../../../store/products/productsActionCreator";
-import {selectCart, selectProducts} from "../../../store/products/productsSelector";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import {selectProducts} from "../../../store/products/productsSelector";
+
 
 const ListState = () => {
   const classes = useStyles();
@@ -107,12 +107,6 @@ const ListState = () => {
                         </CardContent>
                       </CardActionArea>
                     </Card>
-                  </Link>
-                  <Link to={CART.replace(":id", el.id)} >
-                    <Button variant="contained" className={classes.contained} >
-                      <ShoppingCartIcon className={classes.icon} />
-                      Add to Cart
-                    </Button>
                   </Link>
                 </Grid>
               );

@@ -1,14 +1,13 @@
-import {SET_CART, SET_PRODUCTS, SET_SINGLE} from "./productsActionConst";
+import {SET_CART, SET_DECR, SET_INCR, SET_PRODUCTS, SET_SINGLE} from "./productsActionConst";
 
 const initialState = {
     products: [],
     single: {},
-    cart: []
+    cart: [],
+    counter: 0
 }
 
-
 export default function productsReducer(state = initialState, action) {
-
     switch (action.type) {
         case SET_PRODUCTS:
             return  {
@@ -24,6 +23,16 @@ export default function productsReducer(state = initialState, action) {
             return  {
                 ...state,
                 cart: action.payload
+            }
+        case SET_INCR:
+            return  {
+                ...state,
+                counter: action.payload
+            }
+        case SET_DECR:
+            return  {
+                ...state,
+                counter: action.payload
             }
         default:
             return state

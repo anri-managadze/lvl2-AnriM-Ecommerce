@@ -13,7 +13,7 @@ import {useEffect} from "react";
 
 import {useDispatch} from "react-redux";
 import {isToken} from "./store/user/userAction";
-import CartPage from "./pages/CartPage";
+import CartPage from "./pages/CartPage/CartPage";
 
 function App() {
     let dispatch = useDispatch();
@@ -32,7 +32,7 @@ function App() {
           <Route exact path={SIGN_IN} component={SignIn} />
           <Route exact path={SIGN_UP} component={SignUp} />
           <PrivateRoute exact path={PRIVATE} component={ProfilePage} />
-          <Route path={CART} component={CartPage} />
+          <Route exact path={CART} component={CartPage} />
           <Route path={HOME} component={ListPage} />
 
         </Switch>

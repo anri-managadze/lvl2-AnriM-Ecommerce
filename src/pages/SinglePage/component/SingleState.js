@@ -2,18 +2,20 @@ import React, { useEffect } from "react";
 import { Box, Button, Container, Grid } from "@material-ui/core";
 import FullWidthTab from "./FullWidthTab";
 import { Rating } from "@material-ui/lab";
-import Quantity from "./ Quantity";
+import Quantity from "../../../component/ Quantity";
 import RadioButSingle from "./RadioButSingle";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import Loader from "../../../component/Loader";
 import { Api } from "../../../api";
 import { useStyles } from "./SingleStateStyle";
 import {useDispatch, useSelector} from "react-redux";
 import {selectSingle} from "../../../store/products/productsSelector";
-import {setSingle} from "../../../store/products/productsActionCreator";
+import {setCart, setSingle} from "../../../store/products/productsActionCreator";
 import {setLoading} from "../../../store/user/userActionsCreator";
 import {selectLoading} from "../../../store/user/userSelector";
+import {CART} from "../../../roures";
+
 
 const SingleState = () => {
   const classes = useStyles();
@@ -35,6 +37,13 @@ const SingleState = () => {
       })
         .finally(()=>dispatch(setLoading(false)));
   }, [id]);
+
+
+  const click=()=> {
+    dispatch(setCart(data))
+    localStorage.setItem('cart',JSON.stringify(data))
+
+  }
 
   return (
     <Container>
@@ -146,10 +155,12 @@ const SingleState = () => {
                 </Button>
               </Box>
               <Box ml="5px">
-                <Button variant="contained" className={classes.contained}>
+                <Link to={CART.replace(":id", data.id)}  className={classes.link}>
+                <Button variant="contained" className={classes.contained} onClick={click}>
                   <ShoppingCartIcon className={classes.icon} />
                   Add to Cart
                 </Button>
+                </Link>
               </Box>
             </Box>
           </Grid>
