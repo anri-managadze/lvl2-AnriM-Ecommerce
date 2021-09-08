@@ -1,8 +1,9 @@
 import React  from "react";
 import { Box, makeStyles } from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-import {selectCounter} from "../store/products/productsSelector";
-import {setDecr, setIncr} from "../store/products/productsActionCreator";
+import {selectCounter} from "../store/cart/cartSelector";
+import {setDecr, setIncr} from "../store/cart/cartActionCreator";
+
 
 const useStyle = makeStyles({
   btn: {

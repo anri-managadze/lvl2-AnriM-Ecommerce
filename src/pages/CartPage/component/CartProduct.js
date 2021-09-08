@@ -11,22 +11,22 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import Quantity from "../../../component/ Quantity";
 import { useStyles } from "./CartProductStyle";
 import { useSelector } from "react-redux";
-import {
-  selectCart,
-  selectCounter,
-} from "../../../store/products/productsSelector";
+import {selectCart, selectCounter} from "../../../store/cart/cartSelector";
 
 const CartProduct = () => {
   const classes = useStyles();
   const cart = useSelector(selectCart);
   const counter = useSelector(selectCounter);
+  console.log(cart)
 
   const deleteCard = () => {
     localStorage.removeItem("cart");
   };
   return (
+
     <Card className={classes.root}>
-      <Grid container>
+      {!!cart.hasOwnProperty('image')}
+              <Grid container>
         <Grid item xs={12} md={3}>
           {" "}
           <img src={cart.image} alt="surati" className={classes.img} />
@@ -69,7 +69,10 @@ const CartProduct = () => {
             $ {counter * cart.price}
           </Box>
         </Grid>
-      </Grid>
+              </Grid>
+
+
+
     </Card>
   );
 };

@@ -1,8 +1,9 @@
 import React from 'react';
-import {Box, Button, Card, CardActions, CardContent, Grid} from "@material-ui/core";
+import {Box, Button, Card, CardActions, CardContent} from "@material-ui/core";
 import {useSelector} from "react-redux";
-import {selectCart, selectCounter} from "../../../store/products/productsSelector";
+
 import {useStyles} from "./CartPayStyle";
+import {selectCart, selectCounter} from "../../../store/cart/cartSelector";
 
 const CartPay = () => {
     const classes=useStyles();

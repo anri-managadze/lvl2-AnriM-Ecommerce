@@ -9,7 +9,7 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import {SINGLE} from "../../../roures";
+import {CART, SINGLE} from "../../../roures";
 import { Link } from "react-router-dom";
 import Loader from "../../../component/Loader";
 import { useStyles } from "./ListStateStyle";
@@ -20,6 +20,7 @@ import { Pagination } from "@material-ui/lab";
 import {useDispatch, useSelector} from "react-redux";
 import {setProducts} from "../../../store/products/productsActionCreator";
 import {selectProducts} from "../../../store/products/productsSelector";
+import AddCard from "../../CartPage/addCard";
 
 
 const ListState = () => {
@@ -70,22 +71,22 @@ const ListState = () => {
       </Grid>
       <Box>
         <Loader isLoading={loading}>
-          {!!data.hasOwnProperty("title")}
+
           <Grid container>
-            {data.map((el, index) => {
+            {!!data.length && data.map((data,index) => {
               return (
                 <Grid key={index} item xs={12} sm={4} component={Box} p="5px">
                   <Link
-                    to={SINGLE.replace(":id", el.id)}
+                    to={SINGLE.replace(":id", data.id)}
                     className={classes.list}
                   >
                     <Card className={classes.root}>
-                      <CardActionArea>
+                      <CardActionArea >
                         <CardMedia
                           component="img"
                           alt="surati"
                           height="240"
-                          image={el.image}
+                          image={data.image}
                         />
                         <CardContent>
                           <Typography
@@ -94,7 +95,7 @@ const ListState = () => {
                             component="p"
                             className={classes.title}
                           >
-                            {el.title}
+                            {data.title}
                           </Typography>
                           <Typography
                             variant="body2"
@@ -102,12 +103,15 @@ const ListState = () => {
                             component="p"
                             className={classes.price}
                           >
-                            $ {el.price}
+                            $ {data.price}
                           </Typography>
                         </CardContent>
                       </CardActionArea>
                     </Card>
                   </Link>
+                  {/*<Link to={CART.replace(":id", data.id)}>*/}
+                  {/*<AddCard data={data}/>*/}
+                  {/*</Link>*/}
                 </Grid>
               );
             })}

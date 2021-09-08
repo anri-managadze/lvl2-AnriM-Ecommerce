@@ -4,24 +4,23 @@ import FullWidthTab from "./FullWidthTab";
 import { Rating } from "@material-ui/lab";
 import Quantity from "../../../component/ Quantity";
 import RadioButSingle from "./RadioButSingle";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import {Link, useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import Loader from "../../../component/Loader";
 import { Api } from "../../../api";
 import { useStyles } from "./SingleStateStyle";
 import {useDispatch, useSelector} from "react-redux";
-import {selectSingle} from "../../../store/products/productsSelector";
-import {setCart, setSingle} from "../../../store/products/productsActionCreator";
+import {setProducts} from "../../../store/products/productsActionCreator";
 import {setLoading} from "../../../store/user/userActionsCreator";
 import {selectLoading} from "../../../store/user/userSelector";
-import {CART} from "../../../roures";
+
+import {selectProducts} from "../../../store/products/productsSelector";
 
 
 const SingleState = () => {
   const classes = useStyles();
   const { id } = useParams();
   const dispatch=useDispatch();
-  const data= useSelector(selectSingle);
+  const data= useSelector(selectProducts);
   const loading=useSelector(selectLoading)
 
 
@@ -29,7 +28,7 @@ const SingleState = () => {
     dispatch(setLoading(true))
     Api.getSingleProduct(id)
       .then((json) => {
-        dispatch(setSingle(json));
+        dispatch(setProducts(json));
         console.log(json);
       })
       .catch((err) => {
@@ -38,12 +37,6 @@ const SingleState = () => {
         .finally(()=>dispatch(setLoading(false)));
   }, [id]);
 
-
-  const click=()=> {
-    dispatch(setCart(data))
-    localStorage.setItem('cart',JSON.stringify(data))
-
-  }
 
   return (
     <Container>
@@ -155,12 +148,6 @@ const SingleState = () => {
                 </Button>
               </Box>
               <Box ml="5px">
-                <Link to={CART.replace(":id", data.id)}  className={classes.link}>
-                <Button variant="contained" className={classes.contained} onClick={click}>
-                  <ShoppingCartIcon className={classes.icon} />
-                  Add to Cart
-                </Button>
-                </Link>
               </Box>
             </Box>
           </Grid>
