@@ -15,15 +15,7 @@ export const useStyles = makeStyles({
     color: "#1266F1",
     fontSize: "20px",
   },
-  contained: {
-    backgroundColor: "#F2F2F2",
-    fontSize: "10px",
-  },
-  icon: {
-    fontSize: "14px",
-    padding: "5px 10px",
-  },
-  link : {
-    textDecoration: "none"
+  link: {
+    textDecoration: 'none'
   }
 });

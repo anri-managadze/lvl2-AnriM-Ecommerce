@@ -1,11 +1,20 @@
 import React from 'react';
-import {Button} from "@material-ui/core";
+import {Button, makeStyles} from "@material-ui/core";
 import {useDispatch} from "react-redux";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
-import {setCart} from "../../store/cart/cartActionCreator";
+import {setCart} from "../store/cart/cartActionCreator";
 
-const AddCard = ({data}) => {
+
+const useStyle=makeStyles({
+    contained: {
+        backgroundColor: "#F2F2F2",
+        fontSize: "10px",
+    }
+})
+
+const AddCartBtn = ({data}) => {
     const dispatch=useDispatch();
+    const classes=useStyle();
     console.log(data)
     return (
         <>
@@ -13,10 +22,14 @@ const AddCard = ({data}) => {
                 variant="contained"
                 color="default"
                 startIcon={<AddShoppingCartIcon/>}
+                className={classes.contained}
                 onClick={() => {
                     dispatch(
                         setCart({
-                            data
+                            title: data.title,
+                            price: data.price,
+                            id: data.id,
+                            image: data.image,
                         }),
                     )
                 }}
@@ -27,4 +40,4 @@ const AddCard = ({data}) => {
     );
 };
 
-export default AddCard;
+export default AddCartBtn;

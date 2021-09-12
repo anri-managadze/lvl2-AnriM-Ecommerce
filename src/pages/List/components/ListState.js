@@ -20,7 +20,8 @@ import { Pagination } from "@material-ui/lab";
 import {useDispatch, useSelector} from "react-redux";
 import {setProducts} from "../../../store/products/productsActionCreator";
 import {selectProducts} from "../../../store/products/productsSelector";
-import AddCard from "../../CartPage/addCard";
+import AddCard from "../../../component/AddCartBtn";
+import BuyNowBtn from "../../../component/BuyNowBtn";
 
 
 const ListState = () => {
@@ -49,8 +50,6 @@ const ListState = () => {
       setPage(p)
     }
 
-
-
   return (
     <Container>
       <Grid container>
@@ -78,7 +77,7 @@ const ListState = () => {
                 <Grid key={index} item xs={12} sm={4} component={Box} p="5px">
                   <Link
                     to={SINGLE.replace(":id", data.id)}
-                    className={classes.list}
+                    className={classes.link}
                   >
                     <Card className={classes.root}>
                       <CardActionArea >
@@ -109,9 +108,10 @@ const ListState = () => {
                       </CardActionArea>
                     </Card>
                   </Link>
-                  {/*<Link to={CART.replace(":id", data.id)}>*/}
-                  {/*<AddCard data={data}/>*/}
-                  {/*</Link>*/}
+                  <Box>
+                    <BuyNowBtn />
+                    <AddCard data={data} />
+                  </Box>
                 </Grid>
               );
             })}

@@ -15,7 +15,7 @@ export const useStyles = makeStyles((theme) => ({
     color: "#4F4F4F",
     fontSize: "20px",
   },
-  list: {
+  link: {
     textDecoration: "none",
   },
   root: {

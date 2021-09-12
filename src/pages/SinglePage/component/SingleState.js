@@ -4,7 +4,7 @@ import FullWidthTab from "./FullWidthTab";
 import { Rating } from "@material-ui/lab";
 import Quantity from "../../../component/ Quantity";
 import RadioButSingle from "./RadioButSingle";
-import { useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import Loader from "../../../component/Loader";
 import { Api } from "../../../api";
 import { useStyles } from "./SingleStateStyle";
@@ -12,8 +12,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {setProducts} from "../../../store/products/productsActionCreator";
 import {setLoading} from "../../../store/user/userActionsCreator";
 import {selectLoading} from "../../../store/user/userSelector";
-
 import {selectProducts} from "../../../store/products/productsSelector";
+import AddCartBtn from "../../../component/AddCartBtn";
+import {CART} from "../../../roures";
+import AddCard from "../../../component/AddCartBtn";
+import BuyNowBtn from "../../../component/BuyNowBtn";
 
 
 const SingleState = () => {
@@ -139,13 +142,10 @@ const SingleState = () => {
             </Box>
             <Box display="flex" mt="25px">
               <Box>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.containedPrimary}
-                >
-                  buy Now
-                </Button>
+                  <BuyNowBtn />
+                  <Link to={CART.replace(":id", data.id)} className={classes.link} >
+                      <AddCard data={data} />
+                  </Link>
               </Box>
               <Box ml="5px">
               </Box>

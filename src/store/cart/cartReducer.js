@@ -1,9 +1,9 @@
-import {SET_CART, SET_DECR, SET_INCR} from "./cartActionConst";
+import {DEL_PRODUCT, SET_CART, SET_DECR, SET_INCR} from "./cartActionConst";
 
 
 const initialState = {
     cart: [],
-    counter: 0
+    counter: 1
 }
 
 export default function cartReducer(state = initialState, action) {
@@ -12,6 +12,13 @@ export default function cartReducer(state = initialState, action) {
             return  {
                 ...state,
                 cart: [...state.cart, { ...action.payload, qty: 1 }]
+            }
+        case DEL_PRODUCT:
+            return  {
+                ...state,
+                cart: state.cart.filter(
+                    (item) => item.id !== action.payload,
+                ),
             }
         case SET_INCR:
             return  {

@@ -1,10 +1,17 @@
-import {SET_CART, SET_DECR, SET_INCR} from "./cartActionConst";
+import {DEL_PRODUCT, SET_CART, SET_DECR, SET_INCR} from "./cartActionConst";
 
 
 export const setCart=(cart)=> {
     return {
         type: SET_CART,
         payload: cart
+    }
+}
+
+export const deleteProducts = (id) => {
+    return {
+        type: DEL_PRODUCT,
+        payload: id,
     }
 }
 export const setIncr=(incr)=> {

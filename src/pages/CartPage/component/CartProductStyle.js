@@ -7,6 +7,7 @@ export const useStyles = makeStyles({
     },
     root: {
         display: "flex",
+        flexDirection: 'column',
         minHeight: '300px'
     },
     title: {

@@ -1,2 +1,2 @@
-export const selectCart=(state)=>state.products.cart;
-export const selectCounter=(state)=>state.products.counter;
+export const selectCart=(state)=>state.cart.cart;
+export const selectCounter=(state)=>state.counter.counter;
