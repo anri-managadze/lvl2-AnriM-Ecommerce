@@ -15,7 +15,7 @@ const useStyle=makeStyles({
 const AddCartBtn = ({data}) => {
     const dispatch=useDispatch();
     const classes=useStyle();
-    console.log(data)
+
     return (
         <>
             <Button

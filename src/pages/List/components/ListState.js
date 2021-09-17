@@ -9,7 +9,7 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import {CART, SINGLE} from "../../../roures";
+import {SINGLE} from "../../../roures";
 import { Link } from "react-router-dom";
 import Loader from "../../../component/Loader";
 import { useStyles } from "./ListStateStyle";
@@ -22,6 +22,8 @@ import {setProducts} from "../../../store/products/productsActionCreator";
 import {selectProducts} from "../../../store/products/productsSelector";
 import AddCard from "../../../component/AddCartBtn";
 import BuyNowBtn from "../../../component/BuyNowBtn";
+import {selectCart} from "../../../store/cart/cartSelector";
+import DeleteCartBtn from "../../../component/DeleteCartBtn";
 
 
 const ListState = () => {
@@ -31,9 +33,10 @@ const ListState = () => {
   const [page,setPage]=useState(1 );
   const dispatch=useDispatch();
   const data= useSelector(selectProducts);
+  const cart=useSelector(selectCart)
 
 
-    useEffect( () => {
+  useEffect( () => {
         setLoading(true);
         Api.getProductList(page)
             .then((data) => {
@@ -110,7 +113,9 @@ const ListState = () => {
                   </Link>
                   <Box>
                     <BuyNowBtn />
-                    <AddCard data={data} />
+                    { !!cart.find((id) => id.id === data.id) === false ?
+                      <AddCard data={data} /> : <DeleteCartBtn id={data.id} />
+                    }
                   </Box>
                 </Grid>
               );

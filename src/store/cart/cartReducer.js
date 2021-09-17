@@ -1,4 +1,4 @@
-import {DEL_PRODUCT, SET_CART, SET_DECR, SET_INCR} from "./cartActionConst";
+import {DEL_PRODUCT, SET_CART, SET_COOKIE, SET_DECR, SET_INCR} from "./cartActionConst";
 
 
 const initialState = {
@@ -29,6 +29,11 @@ export default function cartReducer(state = initialState, action) {
             return  {
                 ...state,
                 counter: action.payload - 1
+            }
+        case SET_COOKIE:
+            return {
+                ...state,
+                cart: [...action.payload]
             }
         default:
             return state
