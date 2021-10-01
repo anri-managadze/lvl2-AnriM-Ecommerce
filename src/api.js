@@ -3,7 +3,7 @@ import { serializeSingleProduct } from "./serializes/single";
 import { serialize } from "object-to-formdata";
 
 export const Api = {
-  baseUrl: "http://159.65.126.180/api/",
+  baseUrl: "http://fakestoreapi.com/",
   getData: function (url, params, method = "get",isFile) {
       let headers = {};
 
@@ -35,7 +35,7 @@ export const Api = {
   getProductList: function (page) {
     return Api.getData( 'products?page='+page)
       .then((json) => {
-        return serializeProductList(json.data);
+        return serializeProductList(json); // json.data შევცვალე დროებით რომ წამოეღო ინფორმაცია... !!
       });
   },
 
