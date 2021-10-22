@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/lvl2-AnriM-Ecommerce/static/css/main.a402d0d3.chunk.css",
+    "main.js": "/lvl2-AnriM-Ecommerce/static/js/main.ac8c7fa9.chunk.js",
+    "main.js.map": "/lvl2-AnriM-Ecommerce/static/js/main.ac8c7fa9.chunk.js.map",
+    "runtime-main.js": "/lvl2-AnriM-Ecommerce/static/js/runtime-main.c16e900d.js",
+    "runtime-main.js.map": "/lvl2-AnriM-Ecommerce/static/js/runtime-main.c16e900d.js.map",
+    "static/js/2.276fbe6d.chunk.js": "/lvl2-AnriM-Ecommerce/static/js/2.276fbe6d.chunk.js",
+    "static/js/2.276fbe6d.chunk.js.map": "/lvl2-AnriM-Ecommerce/static/js/2.276fbe6d.chunk.js.map",
+    "static/js/3.be2493e0.chunk.js": "/lvl2-AnriM-Ecommerce/static/js/3.be2493e0.chunk.js",
+    "static/js/3.be2493e0.chunk.js.map": "/lvl2-AnriM-Ecommerce/static/js/3.be2493e0.chunk.js.map",
+    "index.html": "/lvl2-AnriM-Ecommerce/index.html",
+    "static/css/main.a402d0d3.chunk.css.map": "/lvl2-AnriM-Ecommerce/static/css/main.a402d0d3.chunk.css.map",
+    "static/js/2.276fbe6d.chunk.js.LICENSE.txt": "/lvl2-AnriM-Ecommerce/static/js/2.276fbe6d.chunk.js.LICENSE.txt",
+    "static/media/bank.2f20d1d8.jpg": "/lvl2-AnriM-Ecommerce/static/media/bank.2f20d1d8.jpg",
+    "static/media/cover.08bbb051.jpg": "/lvl2-AnriM-Ecommerce/static/media/cover.08bbb051.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c16e900d.js",
+    "static/js/2.276fbe6d.chunk.js",
+    "static/css/main.a402d0d3.chunk.css",
+    "static/js/main.ac8c7fa9.chunk.js"
+  ]
+}
