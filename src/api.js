@@ -3,7 +3,7 @@ import { serializeSingleProduct } from "./serializes/single";
 import { serialize } from "object-to-formdata";
 
 export const Api = {
-  baseUrl: "http://fakestoreapi.com/",
+  baseUrl: "https://fakestoreapi.com/",
   getData: function (url, params, method = "get",isFile) {
       let headers = {};
 
